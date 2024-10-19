@@ -51,7 +51,7 @@ pipeline {
     stage('5. Application Deployment in EKS') {
       steps {
         kubeconfig(caCertificate: '', credentialsId: 'kubeconfig', serverUrl: '') {
-          sh "kubectl apply -f manifest"
+          sh "kubectl apply -f k8s-manifest"
         }
       }
     }
