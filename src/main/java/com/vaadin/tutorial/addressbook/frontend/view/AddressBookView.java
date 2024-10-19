@@ -10,9 +10,9 @@ public class AddressBookView extends VerticalLayout {
     public AddressBookView() {
         Button addContactBtn = new Button("Add Contact");
         addContactBtn.addClickListener(event -> {
-            // Add your contact form logic here
+            // Add logic to open the ContactForm
         });
-
         add(addContactBtn);
     }
 }
+
