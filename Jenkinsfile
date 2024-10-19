@@ -69,7 +69,7 @@ pipeline {
     stage('7. Email Notification') {
       steps {
         mail bcc: 'fusisoft@gmail.com', body: '''Build is Over. Check the application using the URL below:
-         https://address.dominionsystem.org
+         https://address.dominionsystem.org/ROOT
          Let me know if the changes look okay.
          Thanks,
          Dominion System Technologies,
