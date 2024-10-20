@@ -6,12 +6,12 @@
     <groupId>com.vaadin.tutorial</groupId>
     <artifactId>addressbook</artifactId>
     <version>1.0</version>
-    <packaging>jar</packaging>
+    <packaging>jar</packaging> <!-- Ensure it's jar-based packaging -->
 
     <properties>
-        <java.version>17</java.version>
-        <spring-boot.version>2.7.15</spring-boot.version>
-        <vaadin.version>23.3.0</vaadin.version> <!-- Add Vaadin version -->
+        <java.version>17</java.version> <!-- Using Java 17 -->
+        <spring-boot.version>2.7.15</spring-boot.version> <!-- Spring Boot version -->
+        <vaadin.version>23.3.0</vaadin.version> <!-- Vaadin version -->
     </properties>
 
     <dependencyManagement>
@@ -28,21 +28,28 @@
     </dependencyManagement>
 
     <dependencies>
-        <!-- Spring Boot Starter Web -->
+        <!-- Spring Boot Starter Web for RESTful services -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
 
-        <!-- Vaadin Spring Boot Starter for Vaadin support -->
+        <!-- Vaadin Spring Boot Starter for UI support -->
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-spring-boot-starter</artifactId>
-            <version>${vaadin.version}</version> <!-- Ensure Vaadin dependencies are included -->
+            <version>${vaadin.version}</version> 
         </dependency>
 
-        <!-- Spring Boot DevTools for development -->
+        <!-- Vaadin Core for frontend components -->
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-core</artifactId>
+            <version>${vaadin.version}</version>
+        </dependency>
+
+        <!-- Spring Boot DevTools for hot reloading during development -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -51,25 +58,18 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- Spring Boot Starter Test -->
+        <!-- Spring Boot Starter Test for testing support -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <version>${spring-boot.version}</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- Vaadin frontend dependencies -->
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-core</artifactId> <!-- Add core Vaadin components -->
-            <version>${vaadin.version}</version>
-        </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <!-- Maven Compiler Plugin for Java version -->
+            <!-- Maven Compiler Plugin for compiling Java code -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -80,15 +80,19 @@
                 </configuration>
             </plugin>
 
-            <!-- Spring Boot Maven Plugin -->
+            <!-- Spring Boot Maven Plugin for running Spring Boot applications -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
+                <configuration>
+                    <mainClass>com.vaadin.tutorial.addressbook.backend.AddressBookApplication</mainClass> <!-- Ensure the main class is set -->
+                </configuration>
             </plugin>
         </plugins>
     </build>
 </project>
+
 
 
 
