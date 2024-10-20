@@ -6,34 +6,47 @@
     <groupId>com.vaadin.tutorial</groupId>
     <artifactId>addressbook</artifactId>
     <version>1.0</version>
-    <name>AddressBook Vaadin Application</name>
-    <packaging>jar</packaging> <!-- Use jar as packaging -->
+    <packaging>jar</packaging>
 
     <properties>
         <java.version>17</java.version>
-        <spring-boot.version>2.7.15</spring-boot.version> <!-- Define the Spring Boot version -->
+        <spring-boot.version>2.7.15</spring-boot.version>
+        <vaadin.version>23.3.0</vaadin.version> <!-- Add Vaadin version -->
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Vaadin BOM for dependency management -->
+            <dependency>
+                <groupId>com.vaadin</groupId>
+                <artifactId>vaadin-bom</artifactId>
+                <version>${vaadin.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <!-- Spring Boot Starter Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>${spring-boot.version}</version> <!-- Use the defined version -->
+            <version>${spring-boot.version}</version>
         </dependency>
 
-        <!-- Spring Boot Starter Thymeleaf for HTML rendering -->
+        <!-- Vaadin Spring Boot Starter for Vaadin support -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-            <version>${spring-boot.version}</version> <!-- Use the defined version -->
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-spring-boot-starter</artifactId>
+            <version>${vaadin.version}</version> <!-- Ensure Vaadin dependencies are included -->
         </dependency>
 
         <!-- Spring Boot DevTools for development -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
-            <version>${spring-boot.version}</version> <!-- Use the defined version -->
+            <version>${spring-boot.version}</version>
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
@@ -42,22 +55,41 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <version>${spring-boot.version}</version> <!-- Use the defined version -->
+            <version>${spring-boot.version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <!-- Vaadin frontend dependencies -->
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-core</artifactId> <!-- Add core Vaadin components -->
+            <version>${vaadin.version}</version>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <!-- Spring Boot Maven Plugin for building the Spring Boot JAR -->
+            <!-- Maven Compiler Plugin for Java version -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+
+            <!-- Spring Boot Maven Plugin -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version> <!-- Use the defined version -->
+                <version>${spring-boot.version}</version>
             </plugin>
         </plugins>
     </build>
 </project>
+
 
 
 
