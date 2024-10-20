@@ -1,4 +1,4 @@
-package com.vaadin.tutorial.addressbook.backend.model;
+package com.addressbook.backend.model;
 
 public class Contact {
     private Long id;

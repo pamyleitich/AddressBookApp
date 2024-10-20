@@ -1,6 +1,6 @@
-package com.vaadin.tutorial.addressbook.backend.service;
+package com.addressbook.backend.service;
 
-import com.vaadin.tutorial.addressbook.backend.model.Contact;
+import com.addressbook.backend.model.Contact;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

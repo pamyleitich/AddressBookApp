@@ -1,13 +1,17 @@
-# Use the official Spring Boot image or a JDK image
-FROM openjdk:17-jdk-alpine
+# Use the official Tomcat image with JDK 17
+FROM tomcat:9.0.96-jdk17
 
-# Add the JAR file to the container
-COPY ./target/addressbook-1.0.jar /app/addressbook-1.0.jar
+# Remove the default Tomcat webapps (optional to keep the container clean)
+RUN rm -rf /usr/local/tomcat/webapps/ROOT /usr/local/tomcat/webapps/ROOT.war
 
-# Expose the port the app runs on
+# Copy the WAR file from the target directory to Tomcat's webapps directory
+COPY ./target/addressbook-1.0.war /usr/local/tomcat/webapps/ROOT.war
+
+# Expose the default Tomcat port
 EXPOSE 8080
 
-# Run the JAR file
-ENTRYPOINT ["java", "-jar", "/app/addressbook-1.0.jar"]
+# Start Tomcat server
+CMD ["catalina.sh", "run"]
+
 
 
