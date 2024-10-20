@@ -2,14 +2,12 @@ package com.addressbook.backend.controller;
 
 import com.addressbook.backend.model.Contact;
 import com.addressbook.backend.service.ContactService;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
+@RequestMapping("/api/contacts")
 public class ContactController {
 
     private final ContactService contactService;
@@ -18,16 +16,17 @@ public class ContactController {
         this.contactService = contactService;
     }
 
-    @GetMapping("/contacts")
-    public String getAllContacts(Model model) {
-        List<Contact> contacts = contactService.findAll();
-        model.addAttribute("contacts", contacts);
-        return "contacts"; // returns contacts.html from templates
+    // Get all contacts
+    @GetMapping
+    public List<Contact> getAllContacts() {
+        return contactService.findAll();
     }
 
-    @PostMapping("/add-contact")
-    public String addContact(Contact contact, Model model) {
+    // Add a new contact
+    @PostMapping
+    public Contact addContact(@RequestBody Contact contact) {
         contactService.addContact(contact);
-        return "redirect:/contacts";
+        return contact;
     }
 }
+
