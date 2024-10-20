@@ -8,13 +8,15 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 @SpringBootApplication
 public class AddressBookApplication extends SpringBootServletInitializer {
 
+    // Required for Spring Boot WAR deployment to external servers
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(AddressBookApplication.class);
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(AddressBookApplication.class, args);
     }
-
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(AddressBookApplication.class);
-    }
 }
+
 
