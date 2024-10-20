@@ -11,7 +11,3 @@ public class AddressBookApplication extends SpringBootServletInitializer {
         SpringApplication.run(AddressBookApplication.class, args);
     }
 }
-
-
-
-

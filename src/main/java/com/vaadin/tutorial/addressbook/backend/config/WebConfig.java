@@ -19,4 +19,3 @@ public class WebConfig implements WebMvcConfigurer {
 
     // Additional Spring MVC configuration (if needed) can be added here
 }
-

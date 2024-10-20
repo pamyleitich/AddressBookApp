@@ -14,5 +14,4 @@ public class AddressBookView extends VerticalLayout {
         });
         add(addContactBtn);
     }
-}
-
+} 
