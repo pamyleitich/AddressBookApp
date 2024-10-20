@@ -1,48 +1,64 @@
-<project>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>com.vaadin.tutorial</groupId>
     <artifactId>addressbook</artifactId>
     <version>1.0</version>
     <name>AddressBook Vaadin Application</name>
-    <packaging>jar</packaging> <!-- Switch to jar instead of war -->
+    <packaging>jar</packaging> <!-- Use jar as packaging -->
 
     <properties>
         <java.version>17</java.version>
-        <spring-boot.version>2.7.15</spring-boot.version>
+        <spring-boot.version>2.7.15</spring-boot.version> <!-- Define the Spring Boot version -->
     </properties>
 
     <dependencies>
-        <!-- Spring Boot Dependencies -->
+        <!-- Spring Boot Starter Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring-boot.version}</version> <!-- Use the defined version -->
         </dependency>
+
+        <!-- Spring Boot Starter Thymeleaf for HTML rendering -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId> <!-- For HTML rendering -->
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <version>${spring-boot.version}</version> <!-- Use the defined version -->
         </dependency>
+
+        <!-- Spring Boot DevTools for development -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
+            <version>${spring-boot.version}</version> <!-- Use the defined version -->
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
+
+        <!-- Spring Boot Starter Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <version>${spring-boot.version}</version> <!-- Use the defined version -->
             <scope>test</scope>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <!-- Spring Boot Maven Plugin for building the Spring Boot JAR -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version> <!-- Use the defined version -->
             </plugin>
         </plugins>
     </build>
 </project>
+
 
 
 
