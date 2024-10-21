@@ -83,7 +83,7 @@ kubectl create secret generic alertmanager-kube-prometheus-stack-alertmanager --
 
 
 #Admin password reset for grafana
-
+kubectl exec -it kube-prometheus-stack-grafana-dd895c655-44qbp -- /bin/bash
 
 /usr/share/grafana/bin/grafana-cli admin reset-admin-password 'Sch00l@12'
 

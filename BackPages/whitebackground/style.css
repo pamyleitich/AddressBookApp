@@ -25,36 +25,29 @@ body {
     padding: 20px;
 }
 
-/* Logo Styling */
 .logo {
     width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
+    /* Adjust size as needed */
     margin-bottom: 20px;
 }
 
-/* Headers Styling */
 h1,
 h2 {
     color: #6a0dad;
     /* Purple for headers */
 }
 
-/* Paragraph Text */
 p {
     color: #555;
     /* Darker gray for paragraph text */
 }
 
-/* Content Section Styling */
 .content-section {
     display: flex;
     justify-content: space-around;
     flex-grow: 1;
 }
 
-/* Form and List Styling */
 .contact-form,
 .contact-list {
     width: 45%;
@@ -66,7 +59,6 @@ p {
     /* Purple border for forms */
 }
 
-/* Input Fields and Buttons Styling */
 input[type="text"],
 input[type="email"],
 input[type="tel"],
@@ -93,7 +85,6 @@ button:hover {
     /* Darker purple on hover */
 }
 
-/* Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
