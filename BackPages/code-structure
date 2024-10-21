@@ -1,0 +1,27 @@
+AddressBookApp/
+│
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   ├── com/
+│   │   │   │   ├── addressbook/
+│   │   │   │   │   ├── AddressBookApplication.java    # Main Application Class
+│   │   │   │   │   ├── model/
+│   │   │   │   │   │   └── Contact.java               # Model class for Contact
+│   │   │   │   │   ├── service/
+│   │   │   │   │   │   └── ContactService.java        # Business Logic Service
+│   │   │   │   │   ├── controller/
+│   │   │   │   │   │   └── ContactController.java     # REST API Controller
+│   │   │   │   │   ├── repository/
+│   │   │   │   │   │   └── ContactRepository.java     # MongoDB Repository for Contact
+│   │   │   │   │   ├── config/
+│   │   │   │   │   │   └── WebConfig.java             # Spring Web Configuration
+│   ├── resources/
+│   │   ├── static/
+│   │   │   ├── css/
+│   │   │   │   └── styles.css                         # Stylesheet for the application
+│   │   ├── templates/
+│   │   │   └── index.html                             # Main HTML Template
+│   │   └── application.properties                     # Spring Boot Properties
+├── pom.xml                                             # Maven Build File
+└── README.md                                           # Documentation

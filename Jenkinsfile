@@ -3,7 +3,7 @@ pipeline {
     parameters {
       choice(name: 'aws_account',choices: ['999568710647', '4568366404742', '922266408974','576900672829'], description: 'aws account hosting image registry')
       choice(name: 'Environment', choices: ['Dev', 'QA', 'UAT', 'Prod'], description: 'Target environment for deployment')
-      string(name: 'ecr_tag', defaultValue: '1.7.0', description: 'Assign the ECR tag version for the build')
+      string(name: 'ecr_tag', defaultValue: '1.19.0', description: 'Assign the ECR tag version for the build')
     }
 
     tools {
@@ -13,7 +13,7 @@ pipeline {
     stages {
     stage('1. Git Checkout') {
       steps {
-        git branch: 'release', credentialsId: 'Github-pat', url: 'https://github.com/ndiforfusi/addressbook-app.git'
+        git branch: 'mongodb-integration', credentialsId: 'Github-pat', url: 'https://github.com/ndiforfusi/AddressBookApp.git'
       }
     }
     stage('2. Build with Maven') { 
@@ -29,8 +29,8 @@ pipeline {
               withCredentials([string(credentialsId: 'sonarqube-token', variable: 'SONAR_TOKEN')]) {
                       sh """
                       ${scannerHome}/bin/sonar-scanner  \
-                      -Dsonar.projectKey=addressbook-app-application \
-                      -Dsonar.projectName='addressbook-app-application' \
+                      -Dsonar.projectKey=addressbook_app \
+                      -Dsonar.projectName='addressbook-app' \
                       -Dsonar.host.url=https://sonarqube.dominionsystem.org \
                       -Dsonar.token=${SONAR_TOKEN} \
                       -Dsonar.sources=src/main/java/ \
@@ -51,7 +51,7 @@ pipeline {
     stage('5. Application Deployment in EKS') {
       steps {
         kubeconfig(caCertificate: '', credentialsId: 'kubeconfig', serverUrl: '') {
-          sh "kubectl apply -f manifest"
+          sh "kubectl apply -k k8s-manifest"
         }
       }
     }
@@ -69,7 +69,7 @@ pipeline {
     stage('7. Email Notification') {
       steps {
         mail bcc: 'fusisoft@gmail.com', body: '''Build is Over. Check the application using the URL below:
-         https://app.dominionsystem.org
+         https://address.dominionsystem.org
          Let me know if the changes look okay.
          Thanks,
          Dominion System Technologies,

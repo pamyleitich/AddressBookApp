@@ -5,8 +5,10 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #fff;
-    color: #333;
+    background-color: #6a0dad;
+    /* Purple background to match the logo */
+    color: #fff;
+    /* White text for readability on purple background */
 }
 
 .container {
@@ -23,45 +25,38 @@ body {
     padding: 20px;
 }
 
-/* Enlarged Logo Styling */
 .logo {
-    width: 250px;
-    /* Increased size */
-    height: 250px;
-    border-radius: 50%;
-    object-fit: cover;
+    width: 150px;
+    /* Adjust size as needed */
     margin-bottom: 20px;
 }
 
-/* Headers Styling */
 h1,
 h2 {
-    color: #6a0dad;
+    color: #fff;
+    /* White text for headers */
 }
 
-/* Paragraph Text */
 p {
-    color: #555;
+    color: #e0e0e0;
+    /* Light gray for paragraph text */
 }
 
-/* Content Section Styling */
 .content-section {
     display: flex;
     justify-content: space-around;
     flex-grow: 1;
 }
 
-/* Form and List Styling */
 .contact-form,
 .contact-list {
     width: 45%;
-    background-color: #f8f8ff;
+    background-color: #4b0082;
+    /* Slightly darker purple for forms */
     padding: 20px;
     border-radius: 8px;
-    border: 2px solid #6a0dad;
 }
 
-/* Input Fields and Buttons Styling */
 input[type="text"],
 input[type="email"],
 input[type="tel"],
@@ -71,31 +66,35 @@ button {
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 4px;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
 }
 
 input[type="submit"],
 button {
-    background-color: #6a0dad;
+    background-color: #dda0dd;
+    /* Light purple for buttons */
     color: #fff;
     cursor: pointer;
 }
 
 input[type="submit"]:hover,
 button:hover {
-    background-color: #5a0080;
+    background-color: #c71585;
+    /* Darker purple on hover */
 }
 
-/* Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
+    color: #fff;
+    /* White text in the table */
 }
 
 table,
 th,
 td {
-    border: 1px solid #6a0dad;
+    border: 1px solid #fff;
+    /* White borders */
 }
 
 th,
@@ -108,7 +107,8 @@ td {
 .footer {
     text-align: center;
     padding: 10px;
-    background-color: #6a0dad;
+    background-color: #4b0082;
+    /* Slightly darker purple */
     color: #fff;
     font-size: 14px;
 }

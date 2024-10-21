@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address Book</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+    <!-- Link Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="intro-section">
+            <img src="/static/images/logo.png" alt="Address Book Logo" class="logo">
+            <h1>Welcome to the Address Book Application</h1>
+            <p>This application helps you efficiently store, manage, and retrieve contacts. Easily add new contacts with
+                details like names, email, phone numbers, and birthdays. Keep everything organized in one place!</p>
+        </div>
+
+        <div class="content-section">
+            <div class="contact-form">
+                <h2>Add New Contact</h2>
+                <form id="contactForm">
+                    <label for="firstName">First Name:</label>
+                    <input type="text" id="firstName" name="firstName" required><br>
+
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" id="lastName" name="lastName" required><br>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required><br>
+
+                    <!-- Date of Birth with Flatpickr -->
+                    <label for="dob">Date of Birth:</label>
+                    <input type="text" id="dob" name="dob" placeholder="MM/DD/YYYY" required><br>
+
+                    <label for="phone">Phone Number (10 digits):</label>
+                    <input type="tel" id="phone" name="phone" pattern="\d{10}" required><br>
+
+                    <button type="submit">Add Contact</button>
+                </form>
+            </div>
+
+            <div class="contact-list">
+                <h2>Contact List</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>DOB</th>
+                            <th>Phone</th>
+                        </tr>
+                    </thead>
+                    <tbody id="contactTable">
+                        <!-- Contacts will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        ©2024 Address book app, Inc. All rights reserved.
+    </div>
+
+    <!-- Load Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        flatpickr("#dob", {
+            dateFormat: "m/d/Y",
+            altInput: true,
+            altFormat: "m/d/Y",
+        });
+
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const dob = document.getElementById('dob').value;
+            const phone = document.getElementById('phone').value;
+
+            fetch('/api/contacts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ firstName, lastName, email, dob, phone }),
+            })
+                .then(response => response.json())
+                .then(() => {
+                    alert('Contact added successfully!');
+                    loadContacts();
+                })
+                .catch(error => console.error('Error:', error));
+        });
+
+        function loadContacts() {
+            fetch('/api/contacts')
+                .then(response => response.json())
+                .then(data => {
+                    const contactTable = document.getElementById('contactTable');
+                    contactTable.innerHTML = '';
+
+                    data.forEach(contact => {
+                        const row = `<tr>
+                            <td>${contact.firstName}</td>
+                            <td>${contact.lastName}</td>
+                            <td>${contact.email}</td>
+                            <td>${contact.dob}</td>
+                            <td>${contact.phone}</td>
+                        </tr>`;
+                        contactTable.insertAdjacentHTML('beforeend', row);
+                    });
+                });
+        }
+
+        window.onload = loadContacts;
+    </script>
+</body>
+
+</html>
