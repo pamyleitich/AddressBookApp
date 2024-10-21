@@ -9,9 +9,9 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        // Serve static resources like CSS and JS from the /static directory
         registry.addResourceHandler("/static/**")
                 .addResourceLocations("classpath:/static/");
     }
 }
+
 
