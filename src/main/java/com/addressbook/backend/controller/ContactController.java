@@ -31,3 +31,12 @@ public class ContactController {
 }
 
 
+    // Delete a contact
+    @DeleteMapping("/{id}")
+    public void deleteContact(@PathVariable String id) {
+        contactRepository.deleteById(id);
+    }
+}
+
+
+
