@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <div class="intro-section">
-            <img src="/static/images/app_logo.webp" alt="Address Book Logo" class="logo">
+            <img src="/static/images/logo.png" alt="Address Book Logo" class="logo">
             <h1>Welcome to the Address Book Application</h1>
             <p>This application helps you efficiently store, manage, and retrieve contacts. Easily add new contacts with details like names, email, phone numbers, and birthdays. Keep everything organized in one place!</p>
         </div>
@@ -63,9 +63,8 @@
     <!-- Load Flatpickr JS -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
-        // Initialize Flatpickr for Date of Birth with format mm/dd/yyyy
         flatpickr("#dob", {
-            dateFormat: "m/d/Y",  // mm/dd/yyyy format
+            dateFormat: "m/d/Y",
             altInput: true,
             altFormat: "m/d/Y",
         });
@@ -73,14 +72,12 @@
         document.getElementById('contactForm').addEventListener('submit', function (e) {
             e.preventDefault();
 
-            // Collect form data
             const firstName = document.getElementById('firstName').value;
             const lastName = document.getElementById('lastName').value;
             const email = document.getElementById('email').value;
             const dob = document.getElementById('dob').value;
             const phone = document.getElementById('phone').value;
 
-            // Send data to the backend
             fetch('/api/contacts', {
                 method: 'POST',
                 headers: {
@@ -91,18 +88,17 @@
             .then(response => response.json())
             .then(() => {
                 alert('Contact added successfully!');
-                loadContacts(); // Refresh contact list
+                loadContacts();
             })
             .catch(error => console.error('Error:', error));
         });
 
         function loadContacts() {
-            // Fetch contact list from the backend
             fetch('/api/contacts')
                 .then(response => response.json())
                 .then(data => {
                     const contactTable = document.getElementById('contactTable');
-                    contactTable.innerHTML = ''; // Clear the table
+                    contactTable.innerHTML = ''; 
 
                     data.forEach(contact => {
                         const row = `<tr>
@@ -117,11 +113,11 @@
                 });
         }
 
-        // Load contacts when the page loads
         window.onload = loadContacts;
     </script>
 </body>
 </html>
+
 
 
 
