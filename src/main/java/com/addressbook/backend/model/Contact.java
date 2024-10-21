@@ -1,7 +1,12 @@
 package com.addressbook.backend.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "contacts")
 public class Contact {
-    private Long id;
+    @Id
+    private String id;
     private String firstName;
     private String lastName;
     private String email;
@@ -11,7 +16,7 @@ public class Contact {
     // Constructors, getters, setters
     public Contact() {}
 
-    public Contact(Long id, String firstName, String lastName, String email, String dob, String phone) {
+    public Contact(String id, String firstName, String lastName, String email, String dob, String phone) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -20,11 +25,12 @@ public class Contact {
         this.phone = phone;
     }
 
-    public Long getId() {
+    // Getters and Setters
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -68,4 +74,5 @@ public class Contact {
         this.phone = phone;
     }
 }
+
 

@@ -1,7 +1,8 @@
 package com.addressbook.backend.controller;
 
 import com.addressbook.backend.model.Contact;
-import com.addressbook.backend.service.ContactService;
+import com.addressbook.backend.repository.ContactRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,23 +11,23 @@ import java.util.List;
 @RequestMapping("/api/contacts")
 public class ContactController {
 
-    private final ContactService contactService;
+    @Autowired
+    private ContactRepository contactRepository;
 
-    public ContactController(ContactService contactService) {
-        this.contactService = contactService;
-    }
-
-    // Get all contacts
     @GetMapping
     public List<Contact> getAllContacts() {
-        return contactService.findAll();
+        return contactRepository.findAll();
     }
 
-    // Add a new contact
     @PostMapping
     public Contact addContact(@RequestBody Contact contact) {
-        contactService.addContact(contact);
-        return contact;
+        return contactRepository.save(contact);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteContact(@PathVariable String id) {
+        contactRepository.deleteById(id);
     }
 }
+
 

@@ -6,9 +6,7 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
     background-color: #fff;
-    /* White background */
     color: #333;
-    /* Dark text for readability on white */
 }
 
 .container {
@@ -25,10 +23,11 @@ body {
     padding: 20px;
 }
 
-/* Logo Styling */
+/* Enlarged Logo Styling */
 .logo {
-    width: 150px;
-    height: 150px;
+    width: 250px;
+    /* Increased size */
+    height: 250px;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 20px;
@@ -38,13 +37,11 @@ body {
 h1,
 h2 {
     color: #6a0dad;
-    /* Purple for headers */
 }
 
 /* Paragraph Text */
 p {
     color: #555;
-    /* Darker gray for paragraph text */
 }
 
 /* Content Section Styling */
@@ -59,11 +56,9 @@ p {
 .contact-list {
     width: 45%;
     background-color: #f8f8ff;
-    /* Very light purple background for sections */
     padding: 20px;
     border-radius: 8px;
     border: 2px solid #6a0dad;
-    /* Purple border for forms */
 }
 
 /* Input Fields and Buttons Styling */
@@ -82,7 +77,6 @@ button {
 input[type="submit"],
 button {
     background-color: #6a0dad;
-    /* Purple for buttons */
     color: #fff;
     cursor: pointer;
 }
@@ -90,7 +84,6 @@ button {
 input[type="submit"]:hover,
 button:hover {
     background-color: #5a0080;
-    /* Darker purple on hover */
 }
 
 /* Table Styling */
@@ -103,7 +96,6 @@ table,
 th,
 td {
     border: 1px solid #6a0dad;
-    /* Purple borders for table */
 }
 
 th,
@@ -117,7 +109,6 @@ td {
     text-align: center;
     padding: 10px;
     background-color: #6a0dad;
-    /* Purple background for the footer */
     color: #fff;
     font-size: 14px;
 }

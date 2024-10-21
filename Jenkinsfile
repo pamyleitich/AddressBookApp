@@ -13,7 +13,7 @@ pipeline {
     stages {
     stage('1. Git Checkout') {
       steps {
-        git branch: 'release', credentialsId: 'Github-pat', url: 'https://github.com/ndiforfusi/AddressBookApp.git'
+        git branch: 'mondb-integration', credentialsId: 'Github-pat', url: 'https://github.com/ndiforfusi/AddressBookApp.git'
       }
     }
     stage('2. Build with Maven') { 
@@ -51,7 +51,7 @@ pipeline {
     stage('5. Application Deployment in EKS') {
       steps {
         kubeconfig(caCertificate: '', credentialsId: 'kubeconfig', serverUrl: '') {
-          sh "kubectl apply -f k8s-manifest"
+          sh "kubectl apply -k k8s-manifest"
         }
       }
     }
