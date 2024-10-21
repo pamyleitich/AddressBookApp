@@ -14,15 +14,31 @@ h2 {
 
 .container {
     width: 100%;
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
     background-color: #ffffff;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.form-container {
+.intro-section {
+    text-align: center;
+    padding: 20px;
+}
+
+.logo {
+    width: 150px;
     margin-bottom: 20px;
+}
+
+.content-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contact-form,
+.contact-list {
+    width: 48%;
 }
 
 label {
@@ -32,7 +48,9 @@ label {
 }
 
 input[type="text"],
-input[type="email"] {
+input[type="email"],
+input[type="date"],
+input[type="tel"] {
     width: 100%;
     padding: 8px;
     margin: 5px 0;
