@@ -1,9 +1,12 @@
 package com.addressbook.backend.controller;
 
+import com.addressbook.backend.model.Contact;
+import com.addressbook.backend.service.ContactService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import com.addressbook.backend.service.ContactService;
+
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -16,10 +19,11 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model) {
-        // Add necessary model attributes for Thymeleaf rendering
-        model.addAttribute("contacts", contactService.getAllContacts());
-        return "index";  // Make sure this maps to /templates/index.html
+        List<Contact> contacts = contactService.getAllContacts();
+        model.addAttribute("contacts", contacts);
+        return "index";  // Ensure this matches index.html under /templates
     }
 }
+
 
 
