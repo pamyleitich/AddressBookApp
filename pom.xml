@@ -15,35 +15,35 @@
     </properties>
 
     <dependencies>
-        <!-- Spring Boot Starter Web -->
+        <!-- Spring Boot Starter Web for building REST APIs -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
 
-        <!-- MongoDB Spring Boot Starter -->
+        <!-- MongoDB Spring Boot Starter for MongoDB database integration -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
 
-        <!-- Spring Boot Actuator for Monitoring -->
+        <!-- Spring Boot Actuator for Monitoring and Health Checks -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
 
-        <!-- Thymeleaf for HTML templates -->
+        <!-- Thymeleaf for server-side rendering of HTML templates -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
 
-        <!-- DevTools for development -->
+        <!-- Spring Boot DevTools for faster application development -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -52,7 +52,7 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- Spring Boot Test -->
+        <!-- Spring Boot Test Starter for unit and integration testing -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -63,7 +63,7 @@
 
     <build>
         <plugins>
-            <!-- Compiler Plugin to set Java version -->
+            <!-- Maven Compiler Plugin to specify Java version -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -74,7 +74,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Spring Boot Maven Plugin for WAR packaging -->
+            <!-- Spring Boot Maven Plugin for packaging as a WAR file -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -90,6 +90,7 @@
         </plugins>
     </build>
 </project>
+
 
 
 

@@ -2,7 +2,6 @@ package com.addressbook.backend.controller;
 
 import com.addressbook.backend.model.Contact;
 import com.addressbook.backend.repository.ContactRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,8 +13,12 @@ import java.util.Optional;
 @RequestMapping("/api/contacts")
 public class ContactController {
 
-    @Autowired
-    private ContactRepository contactRepository;
+    private final ContactRepository contactRepository;
+
+    // Constructor-based dependency injection (recommended)
+    public ContactController(ContactRepository contactRepository) {
+        this.contactRepository = contactRepository;
+    }
 
     @GetMapping
     public ResponseEntity<List<Contact>> getAllContacts() {
@@ -23,6 +26,7 @@ public class ContactController {
             List<Contact> contacts = contactRepository.findAll();
             return new ResponseEntity<>(contacts, HttpStatus.OK);
         } catch (Exception e) {
+            // Log the error if needed (using a logger)
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -37,6 +41,7 @@ public class ContactController {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
+            // Log the error if needed (using a logger)
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -47,6 +52,7 @@ public class ContactController {
             Contact newContact = contactRepository.save(contact);
             return new ResponseEntity<>(newContact, HttpStatus.CREATED);
         } catch (Exception e) {
+            // Log the error if needed (using a logger)
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -69,6 +75,7 @@ public class ContactController {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
+            // Log the error if needed (using a logger)
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -79,12 +86,10 @@ public class ContactController {
             contactRepository.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
+            // Log the error if needed (using a logger)
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
-
-
-
 
 
