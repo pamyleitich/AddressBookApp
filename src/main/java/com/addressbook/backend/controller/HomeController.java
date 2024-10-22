@@ -13,6 +13,7 @@ public class HomeController {
 
     private final ContactService contactService;
 
+    // Constructor-based dependency injection for ContactService
     public HomeController(ContactService contactService) {
         this.contactService = contactService;
     }
@@ -20,9 +21,10 @@ public class HomeController {
     @GetMapping("/")
     public String home(Model model) {
         // Fetch contacts from MongoDB using the ContactService
-        List<Contact> contacts = contactService.findAll();
+        List<Contact> contacts = contactService.getAllContacts();  // Call getAllContacts instead of findAll
         model.addAttribute("contacts", contacts);  // Adding the contacts list to the model
 
         return "index"; // Make sure you have an index.html under /templates
     }
 }
+
