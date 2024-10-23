@@ -6,28 +6,30 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
     background-color: #fff;
+    /* White background */
     color: #333;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    padding: 20px;
+    /* Dark text for readability on white */
     box-sizing: border-box;
 }
 
+/* Full page container that fills the browser window */
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Logo and Intro Section Styling */
 .intro-section {
     text-align: center;
     padding: 20px;
 }
 
-/* Enlarged Logo Styling */
+/* Logo Styling - Ensuring it is perfectly round */
 .logo {
-    width: 250px;
-    /* Increased size */
-    height: 250px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 20px;
@@ -37,11 +39,13 @@ body {
 h1,
 h2 {
     color: #6a0dad;
+    /* Purple for headers */
 }
 
 /* Paragraph Text */
 p {
     color: #555;
+    /* Darker gray for paragraph text */
 }
 
 /* Content Section Styling */
@@ -49,6 +53,7 @@ p {
     display: flex;
     justify-content: space-around;
     flex-grow: 1;
+    padding: 20px 0;
 }
 
 /* Form and List Styling */
@@ -56,9 +61,22 @@ p {
 .contact-list {
     width: 45%;
     background-color: #f8f8ff;
+    /* Very light purple background for sections */
     padding: 20px;
     border-radius: 8px;
     border: 2px solid #6a0dad;
+    /* Purple border for forms */
+}
+
+/* Add New Contact Header Banner */
+.contact-form h2 {
+    background-color: #6a0dad;
+    /* Purple background for "Add New Contact" */
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    border-radius: 4px;
+    margin-bottom: 20px;
 }
 
 /* Input Fields and Buttons Styling */
@@ -77,6 +95,7 @@ button {
 input[type="submit"],
 button {
     background-color: #6a0dad;
+    /* Purple for buttons */
     color: #fff;
     cursor: pointer;
 }
@@ -84,6 +103,7 @@ button {
 input[type="submit"]:hover,
 button:hover {
     background-color: #5a0080;
+    /* Darker purple on hover */
 }
 
 /* Table Styling */
@@ -96,6 +116,7 @@ table,
 th,
 td {
     border: 1px solid #6a0dad;
+    /* Purple borders for table */
 }
 
 th,
@@ -109,6 +130,9 @@ td {
     text-align: center;
     padding: 10px;
     background-color: #6a0dad;
+    /* Purple background for the footer */
     color: #fff;
     font-size: 14px;
+    margin-top: auto;
+    /* Push footer to the bottom */
 }

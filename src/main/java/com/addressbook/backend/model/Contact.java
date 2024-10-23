@@ -2,15 +2,28 @@ package com.addressbook.backend.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 @Document(collection = "contacts")
 public class Contact {
+
     @Id
     private String id;
+
+    @NotBlank(message = "First name is required")
     private String firstName;
+
+    @NotBlank(message = "Last name is required")
     private String lastName;
+
+    @Email(message = "Please provide a valid email address")
     private String email;
+
     private String dob; // Date of Birth
+
+    @Pattern(regexp = "\\d{10}", message = "Phone number must be 10 digits")
     private String phone; // Phone Number
 
     // Constructors, getters, setters
@@ -74,5 +87,8 @@ public class Contact {
         this.phone = phone;
     }
 }
+
+
+
 
 

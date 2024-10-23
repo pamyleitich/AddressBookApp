@@ -9,7 +9,7 @@ metadata:
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/healthcheck-port: "8080"
-    alb.ingress.kubernetes.io/healthcheck-path: /actuator/health
+    alb.ingress.kubernetes.io/healthcheck-path: /actuator/health # Adjust if needed
     alb.ingress.kubernetes.io/success-codes: "200"
 spec:
   ingressClassName: alb
@@ -24,5 +24,3 @@ spec:
             name: addressbook-app-service
             port:
               number: 8080
-
-
