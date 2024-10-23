@@ -5,7 +5,7 @@ metadata:
   namespace: gateway
 spec:
   serviceName: "mongo-service"
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: mongo
