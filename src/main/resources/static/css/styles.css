@@ -5,10 +5,10 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #6a0dad;
-    /* Purple background to match the logo */
-    color: #fff;
-    /* White text for readability on purple background */
+    background-color: #fff;
+    /* White background */
+    color: #333;
+    /* Dark text for readability on white */
 }
 
 .container {
@@ -25,38 +25,50 @@ body {
     padding: 20px;
 }
 
+/* Logo Styling */
 .logo {
-    width: 250px;
-    /* Increased size from 150px to 250px */
+    width: 200px;
+    /* Increased size */
+    height: 200px;
+    /* Increased size */
+    border-radius: 50%;
+    object-fit: cover;
     margin-bottom: 20px;
 }
 
+/* Headers Styling */
 h1,
 h2 {
-    color: #fff;
-    /* White text for headers */
+    color: #6a0dad;
+    /* Purple for headers */
 }
 
+/* Paragraph Text */
 p {
-    color: #e0e0e0;
-    /* Light gray for paragraph text */
+    color: #555;
+    /* Darker gray for paragraph text */
 }
 
+/* Content Section Styling */
 .content-section {
     display: flex;
     justify-content: space-around;
     flex-grow: 1;
 }
 
+/* Form and List Styling */
 .contact-form,
 .contact-list {
     width: 45%;
-    background-color: #4b0082;
-    /* Slightly darker purple for forms */
+    background-color: #f8f8ff;
+    /* Very light purple background for sections */
     padding: 20px;
     border-radius: 8px;
+    border: 2px solid #6a0dad;
+    /* Purple border for forms */
 }
 
+/* Input Fields and Buttons Styling */
 input[type="text"],
 input[type="email"],
 input[type="tel"],
@@ -66,35 +78,34 @@ button {
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 4px;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
 }
 
 input[type="submit"],
 button {
-    background-color: #dda0dd;
-    /* Light purple for buttons */
+    background-color: #6a0dad;
+    /* Purple for buttons */
     color: #fff;
     cursor: pointer;
 }
 
 input[type="submit"]:hover,
 button:hover {
-    background-color: #c71585;
+    background-color: #5a0080;
     /* Darker purple on hover */
 }
 
+/* Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
-    color: #fff;
-    /* White text in the table */
 }
 
 table,
 th,
 td {
-    border: 1px solid #fff;
-    /* White borders */
+    border: 1px solid #6a0dad;
+    /* Purple borders for table */
 }
 
 th,
@@ -107,8 +118,8 @@ td {
 .footer {
     text-align: center;
     padding: 10px;
-    background-color: #4b0082;
-    /* Slightly darker purple */
+    background-color: #6a0dad;
+    /* Purple background for the footer */
     color: #fff;
     font-size: 14px;
 }
