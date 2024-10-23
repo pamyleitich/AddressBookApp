@@ -9,28 +9,27 @@ body {
     /* White background */
     color: #333;
     /* Dark text for readability on white */
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    padding: 20px;
     box-sizing: border-box;
 }
 
+/* Full page container that fills the browser window */
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Logo and Intro Section Styling */
 .intro-section {
     text-align: center;
     padding: 20px;
 }
 
-/* Logo Styling */
+/* Logo Styling - Ensuring it is perfectly round */
 .logo {
     width: 200px;
-    /* Increased size */
     height: 200px;
-    /* Increased size */
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 20px;
@@ -54,6 +53,7 @@ p {
     display: flex;
     justify-content: space-around;
     flex-grow: 1;
+    padding: 20px 0;
 }
 
 /* Form and List Styling */
@@ -66,6 +66,17 @@ p {
     border-radius: 8px;
     border: 2px solid #6a0dad;
     /* Purple border for forms */
+}
+
+/* Add New Contact Header Banner */
+.contact-form h2 {
+    background-color: #6a0dad;
+    /* Purple background for "Add New Contact" */
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    border-radius: 4px;
+    margin-bottom: 20px;
 }
 
 /* Input Fields and Buttons Styling */
@@ -122,4 +133,6 @@ td {
     /* Purple background for the footer */
     color: #fff;
     font-size: 14px;
+    margin-top: auto;
+    /* Push footer to the bottom */
 }
