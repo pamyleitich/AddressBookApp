@@ -3,11 +3,13 @@ package com.addressbook.backend.service;
 import com.addressbook.backend.model.Contact;
 import com.addressbook.backend.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,26 +18,19 @@ public class ContactService {
 
     private final ContactRepository contactRepository;
 
-    // Constructor-based dependency injection (recommended)
     @Autowired
     public ContactService(ContactRepository contactRepository) {
         this.contactRepository = contactRepository;
     }
 
-    // Fetch all contacts with pagination and sorting
+    // Fetch contacts with pagination and sorting
     public List<Contact> getContactsSortedAndPaginated(String sortBy, int page, int size) {
-        Page<Contact> contactPage = contactRepository.findAll(PageRequest.of(page, size, Sort.by(sortBy)));
-        return contactPage.getContent();
+        return contactRepository.findAll(PageRequest.of(page, size, Sort.by(sortBy))).getContent();
     }
 
-    // Search contacts by first or last name (partial, case-insensitive match)
-    public List<Contact> searchContacts(String query) {
-        return contactRepository.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(query, query);
-    }
-
-    // Fetch all contacts without pagination
-    public List<Contact> getAllContacts() {
-        return contactRepository.findAll();
+    // Fetch a contact by ID
+    public Optional<Contact> getContactById(String id) {
+        return contactRepository.findById(id);
     }
 
     // Add a new contact
@@ -68,5 +63,36 @@ public class ContactService {
             throw new RuntimeException("Contact not found with id: " + id);
         }
     }
+
+    // Export contacts to CSV
+    public void exportContactsToCSV(HttpServletResponse response) throws IOException {
+        List<Contact> contacts = contactRepository.findAll();
+        response.setContentType("text/csv");
+        response.setHeader("Content-Disposition", "attachment; filename=\"contacts.csv\"");
+
+        PrintWriter writer = response.getWriter();
+        writer.println("ID,First Name,Last Name,Email,Date of Birth,Phone,Address,Birthday,Profile Picture URL");
+
+        for (Contact contact : contacts) {
+            writer.printf("%s,%s,%s,%s,%s,%s,%s,%s,%s%n",
+                contact.getId(),
+                contact.getFirstName(),
+                contact.getLastName(),
+                contact.getEmail(),
+                contact.getDob(),
+                contact.getPhone(),
+                contact.getAddress(),
+                contact.getBirthday(),
+                contact.getProfilePictureUrl());
+        }
+        writer.flush();
+        writer.close();
+    }
+
+    // Import contacts from a list
+    public void importContacts(List<Contact> contacts) {
+        contactRepository.saveAll(contacts);
+    }
 }
+
 
