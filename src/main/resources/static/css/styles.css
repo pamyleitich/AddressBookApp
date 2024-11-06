@@ -6,13 +6,12 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
     background-color: #fff;
-    /* White background */
     color: #333;
-    /* Dark text for readability on white */
     box-sizing: border-box;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Full page container that fills the browser window */
+/* Container Styling */
 .container {
     display: flex;
     flex-direction: column;
@@ -20,13 +19,13 @@ body {
     padding: 20px;
 }
 
-/* Logo and Intro Section Styling */
+/* Intro Section */
 .intro-section {
     text-align: center;
     padding: 20px;
 }
 
-/* Logo Styling - Ensuring it is perfectly round */
+/* Logo Styling */
 .logo {
     width: 200px;
     height: 200px;
@@ -39,39 +38,37 @@ body {
 h1,
 h2 {
     color: #6a0dad;
-    /* Purple for headers */
 }
 
 /* Paragraph Text */
 p {
     color: #555;
-    /* Darker gray for paragraph text */
 }
 
-/* Content Section Styling */
+/* Content Section */
 .content-section {
     display: flex;
     justify-content: space-around;
     flex-grow: 1;
     padding: 20px 0;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 /* Form and List Styling */
 .contact-form,
 .contact-list {
-    width: 45%;
+    width: 100%;
+    max-width: 600px;
     background-color: #f8f8ff;
-    /* Very light purple background for sections */
     padding: 20px;
     border-radius: 8px;
     border: 2px solid #6a0dad;
-    /* Purple border for forms */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Add New Contact Header Banner */
 .contact-form h2 {
     background-color: #6a0dad;
-    /* Purple background for "Add New Contact" */
     color: #fff;
     padding: 10px;
     text-align: center;
@@ -79,31 +76,57 @@ p {
     margin-bottom: 20px;
 }
 
-/* Input Fields and Buttons Styling */
+/* Input and Button Styling */
 input[type="text"],
 input[type="email"],
 input[type="tel"],
-input[type="submit"],
+input[type="date"],
+select,
 button {
     width: 100%;
     padding: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     border-radius: 4px;
     border: 1px solid #ccc;
+    font-size: 16px;
+    box-sizing: border-box;
 }
 
 input[type="submit"],
 button {
     background-color: #6a0dad;
-    /* Purple for buttons */
     color: #fff;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 input[type="submit"]:hover,
 button:hover {
     background-color: #5a0080;
-    /* Darker purple on hover */
+}
+
+/* Pagination Controls */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.pagination a,
+.pagination span {
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #6a0dad;
+    border: 1px solid #6a0dad;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pagination a:hover {
+    background-color: #6a0dad;
+    color: #fff;
 }
 
 /* Table Styling */
@@ -116,7 +139,6 @@ table,
 th,
 td {
     border: 1px solid #6a0dad;
-    /* Purple borders for table */
 }
 
 th,
@@ -125,14 +147,54 @@ td {
     text-align: left;
 }
 
+th {
+    background-color: #f2f2f2;
+}
+
 /* Footer Styling */
 .footer {
     text-align: center;
     padding: 10px;
     background-color: #6a0dad;
-    /* Purple background for the footer */
     color: #fff;
     font-size: 14px;
     margin-top: auto;
-    /* Push footer to the bottom */
+}
+
+/* Dark Mode Styling */
+body.dark-mode {
+    background-color: #333;
+    color: #f8f8ff;
+}
+
+body.dark-mode .contact-form,
+body.dark-mode .contact-list {
+    background-color: #444;
+    border: 2px solid #888;
+}
+
+body.dark-mode h1,
+body.dark-mode h2 {
+    color: #f8f8ff;
+}
+
+body.dark-mode input[type="submit"],
+body.dark-mode button {
+    background-color: #888;
+    color: #fff;
+}
+
+body.dark-mode input[type="submit"]:hover,
+body.dark-mode button:hover {
+    background-color: #aaa;
+}
+
+body.dark-mode .pagination a,
+body.dark-mode .pagination span {
+    color: #f8f8ff;
+    border: 1px solid #888;
+}
+
+body.dark-mode .pagination a:hover {
+    background-color: #888;
 }

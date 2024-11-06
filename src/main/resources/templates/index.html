@@ -6,153 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Address Book</title>
     <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
-    <!-- Link Flatpickr CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <!-- Custom CSS for layout and design -->
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #fff;
-            margin: 0;
-            padding: 0;
-            color: #333;
-            /* Keep all text black */
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Logo Styling */
-        .intro-section {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .intro-section .logo {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 20px;
-        }
-
-        .intro-section h1 {
-            color: #333;
-            font-size: 36px;
-            margin-bottom: 10px;
-        }
-
-        .intro-section p {
-            color: #555;
-            font-size: 18px;
-        }
-
-        .content-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-grow: 1;
-        }
-
-        /* Add Contact Form Styling */
-        .contact-form {
-            flex: 1;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            margin-right: 20px;
-            border-radius: 8px;
-        }
-
-        .contact-form h2 {
-            color: #fff;
-            background-color: #6a0dad;
-            padding: 10px;
-            margin: -20px -20px 20px -20px;
-            border-radius: 8px 8px 0 0;
-            text-align: center;
-        }
-
-        .contact-form label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
-            color: #333;
-        }
-
-        .contact-form input[type="text"],
-        .contact-form input[type="email"],
-        .contact-form input[type="tel"],
-        .contact-form input[type="date"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-
-        .contact-form button {
-            padding: 10px 20px;
-            border: none;
-            background-color: #6a0dad;
-            color: #fff;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .contact-form button:hover {
-            background-color: #5a0080;
-        }
-
-        /* Contact List Styling */
-        .contact-list {
-            flex: 2;
-        }
-
-        .contact-list h2 {
-            color: #333;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
-        .contact-list table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #fff;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-
-        .contact-list table th,
-        .contact-list table td {
-            padding: 15px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
-
-        .contact-list table th {
-            background-color: #f2f2f2;
-        }
-
-        /* Footer Styling */
-        .footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #6a0dad;
-            color: #fff;
-            margin-top: 40px;
-            font-size: 14px;
-        }
-    </style>
 </head>
 
 <body>
@@ -160,37 +14,51 @@
         <div class="intro-section">
             <img src="/static/images/logo.png" alt="Address Book Logo" class="logo">
             <h1>Welcome to the Address Book Application</h1>
-            <p>This application helps you efficiently store, manage, and retrieve contacts. Easily add new contacts with
-                details like names, email, phone numbers, and birthdays. Keep everything organized in one place!</p>
+            <p>Easily store, manage, and retrieve contacts with details like name, email, phone, and birthday!</p>
+            <!-- Dark Mode Toggle -->
+            <button id="toggleDarkMode">Toggle Dark Mode</button>
         </div>
 
         <div class="content-section">
+            <!-- Search, Sort, and Pagination Controls -->
+            <div class="controls">
+                <form id="filterForm" class="filter-form">
+                    <input type="text" id="searchInput" placeholder="Search by name">
+                    <select id="sortBy">
+                        <option value="firstName">First Name</option>
+                        <option value="lastName">Last Name</option>
+                        <option value="dob">Date of Birth</option>
+                    </select>
+                    <button type="button" onclick="loadContacts()">Search & Sort</button>
+                </form>
+            </div>
+
+            <!-- Contact Form -->
             <div class="contact-form">
                 <h2 id="formTitle">Add New Contact</h2>
                 <form id="contactForm">
                     <input type="hidden" id="contactId">
-
                     <label for="firstName">First Name:</label>
-                    <input type="text" id="firstName" name="firstName" required>
+                    <input type="text" id="firstName" required>
 
                     <label for="lastName">Last Name:</label>
-                    <input type="text" id="lastName" name="lastName" required>
+                    <input type="text" id="lastName" required>
 
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" required>
 
-                    <!-- Date of Birth with Flatpickr -->
                     <label for="dob">Date of Birth:</label>
-                    <input type="text" id="dob" name="dob" placeholder="MM/DD/YYYY" required>
+                    <input type="text" id="dob" placeholder="MM/DD/YYYY" required>
 
                     <label for="phone">Phone Number (10 digits):</label>
-                    <input type="tel" id="phone" name="phone" pattern="\d{10}" required>
+                    <input type="tel" id="phone" pattern="\\d{10}" required>
 
                     <button type="submit" id="submitBtn">Add Contact</button>
                     <button type="button" id="cancelBtn" style="display:none;">Cancel</button>
                 </form>
             </div>
 
+            <!-- Contact List with Pagination -->
             <div class="contact-list">
                 <h2>Contact List</h2>
                 <table>
@@ -204,10 +72,13 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody id="contactTable">
-                        <!-- Contacts will be inserted here -->
-                    </tbody>
+                    <tbody id="contactTable"></tbody>
                 </table>
+                <div class="pagination">
+                    <button onclick="prevPage()">Previous</button>
+                    <span id="pageInfo">Page 1</span>
+                    <button onclick="nextPage()">Next</button>
+                </div>
             </div>
         </div>
     </div>
@@ -216,16 +87,13 @@
         ©2024 Address Book App, Inc. All rights reserved.
     </div>
 
-    <!-- Load Flatpickr JS -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
-        flatpickr("#dob", {
-            dateFormat: "m/d/Y",
-            altInput: true,
-            altFormat: "m/d/Y",
-        });
+        flatpickr("#dob", { dateFormat: "m/d/Y", altInput: true, altFormat: "m/d/Y" });
 
         let isEditMode = false;
+        let currentPage = 0;
+        const pageSize = 10;
 
         document.getElementById('contactForm').addEventListener('submit', function (e) {
             e.preventDefault();
@@ -236,42 +104,27 @@
             const dob = document.getElementById('dob').value;
             const phone = document.getElementById('phone').value;
 
-            if (isEditMode) {
-                // Update existing contact
-                fetch(`/api/contacts/${contactId}`, {
-                    method: 'PUT',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ firstName, lastName, email, dob, phone }),
-                })
-                    .then(response => response.json())
-                    .then(() => {
-                        alert('Contact updated successfully!');
-                        resetForm();
-                        loadContacts();
-                    });
-            } else {
-                // Add new contact
-                fetch('/api/contacts', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ firstName, lastName, email, dob, phone }),
-                })
-                    .then(response => response.json())
-                    .then(() => {
-                        alert('Contact added successfully!');
-                        resetForm();
-                        loadContacts();
-                    });
-            }
+            const url = isEditMode ? `/api/contacts/${contactId}` : '/api/contacts';
+            const method = isEditMode ? 'PUT' : 'POST';
+            fetch(url, {
+                method: method,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ firstName, lastName, email, dob, phone })
+            }).then(() => {
+                alert(isEditMode ? 'Contact updated!' : 'Contact added!');
+                resetForm();
+                loadContacts();
+            });
         });
 
         function loadContacts() {
-            fetch('/api/contacts')
+            const searchQuery = document.getElementById('searchInput').value;
+            const sortBy = document.getElementById('sortBy').value;
+            fetch(`/api/contacts?query=${searchQuery}&sortBy=${sortBy}&page=${currentPage}&size=${pageSize}`)
                 .then(response => response.json())
                 .then(data => {
                     const contactTable = document.getElementById('contactTable');
                     contactTable.innerHTML = '';
-
                     data.forEach(contact => {
                         const row = `<tr>
                             <td>${contact.firstName}</td>
@@ -286,6 +139,7 @@
                         </tr>`;
                         contactTable.insertAdjacentHTML('beforeend', row);
                     });
+                    document.getElementById('pageInfo').textContent = `Page ${currentPage + 1}`;
                 });
         }
 
@@ -307,7 +161,6 @@
                     document.getElementById('email').value = contact.email;
                     document.getElementById('dob').value = contact.dob;
                     document.getElementById('phone').value = contact.phone;
-
                     document.getElementById('formTitle').innerText = 'Edit Contact';
                     document.getElementById('submitBtn').innerText = 'Update Contact';
                     document.getElementById('cancelBtn').style.display = 'inline';
@@ -316,26 +169,27 @@
         }
 
         function resetForm() {
-            document.getElementById('contactId').value = '';
-            document.getElementById('firstName').value = '';
-            document.getElementById('lastName').value = '';
-            document.getElementById('email').value = '';
-            document.getElementById('dob').value = '';
-            document.getElementById('phone').value = '';
-
+            document.getElementById('contactForm').reset();
             document.getElementById('formTitle').innerText = 'Add New Contact';
             document.getElementById('submitBtn').innerText = 'Add Contact';
             document.getElementById('cancelBtn').style.display = 'none';
             isEditMode = false;
         }
 
-        document.getElementById('cancelBtn').addEventListener('click', resetForm);
+        function nextPage() { currentPage++; loadContacts(); }
+        function prevPage() { if (currentPage > 0) currentPage--; loadContacts(); }
 
+        document.getElementById('toggleDarkMode').addEventListener('click', function () {
+            document.body.classList.toggle('dark-mode');
+        });
+
+        document.getElementById('cancelBtn').addEventListener('click', resetForm);
         window.onload = loadContacts;
     </script>
 </body>
 
 </html>
+
 
 
 

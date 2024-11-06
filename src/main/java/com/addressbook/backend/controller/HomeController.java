@@ -5,6 +5,7 @@ import com.addressbook.backend.service.ContactService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -18,12 +19,30 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String home(Model model) {
-        List<Contact> contacts = contactService.getAllContacts();
+    public String home(
+            @RequestParam(value = "search", required = false) String search,
+            @RequestParam(value = "sortBy", required = false, defaultValue = "firstName") String sortBy,
+            @RequestParam(value = "page", required = false, defaultValue = "0") int page,
+            @RequestParam(value = "size", required = false, defaultValue = "10") int size,
+            Model model) {
+
+        List<Contact> contacts;
+
+        if (search != null && !search.isEmpty()) {
+            contacts = contactService.searchContacts(search);
+        } else {
+            contacts = contactService.getContactsSortedAndPaginated(sortBy, page, size);
+        }
+
         model.addAttribute("contacts", contacts);
+        model.addAttribute("search", search);
+        model.addAttribute("sortBy", sortBy);
+        model.addAttribute("page", page);
+        model.addAttribute("size", size);
         return "index";  // Ensure this matches index.html under /templates
     }
 }
+
 
 
 
