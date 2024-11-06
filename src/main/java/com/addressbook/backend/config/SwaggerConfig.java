@@ -19,5 +19,4 @@ public class SwaggerConfig {
                 .build()
                 .groupName("addressbook"); // Set unique group name to avoid conflicts
     }
-}
 
