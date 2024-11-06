@@ -32,9 +32,10 @@ public class ContactService {
         return contactsPage.getContent();
     }
 
-    // Search contacts by name (case-insensitive partial match)
-    public List<Contact> searchContacts(String query) {
-        return contactRepository.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(query, query);
+    // Search contacts by name with pagination
+    public List<Contact> searchContacts(String query, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return contactRepository.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(query, query, pageable).getContent();
     }
 
     // Fetch a contact by ID
@@ -54,7 +55,7 @@ public class ContactService {
                     contact.setFirstName(contactDetails.getFirstName());
                     contact.setLastName(contactDetails.getLastName());
                     contact.setEmail(contactDetails.getEmail());
-                    contact.setDob(contactDetails.getDob());
+                    contact.setDob(contactDetails.getDob());  // Assuming dob is a String, update if necessary
                     contact.setPhone(contactDetails.getPhone());
                     contact.setAddress(contactDetails.getAddress());
                     contact.setBirthday(contactDetails.getBirthday());
@@ -88,7 +89,7 @@ public class ContactService {
                     contact.getFirstName(),
                     contact.getLastName(),
                     contact.getEmail(),
-                    contact.getDob(),
+                    contact.getDob(),  // Access dob directly if it’s a String
                     contact.getPhone(),
                     contact.getAddress(),
                     contact.getBirthday(),
@@ -102,6 +103,7 @@ public class ContactService {
         contactRepository.saveAll(contacts);
     }
 }
+
 
 
 
