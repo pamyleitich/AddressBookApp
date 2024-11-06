@@ -3,7 +3,9 @@ package com.addressbook.backend.service;
 import com.addressbook.backend.model.Contact;
 import com.addressbook.backend.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +27,9 @@ public class ContactService {
 
     // Fetch contacts with pagination and sorting
     public List<Contact> getContactsSortedAndPaginated(String sortBy, int page, int size) {
-        return contactRepository.findAll(PageRequest.of(page, size, Sort.by(sortBy))).getContent();
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).ascending());
+        Page<Contact> contactsPage = contactRepository.findAll(pageable);
+        return contactsPage.getContent();
     }
 
     // Search contacts by name (case-insensitive partial match)
@@ -46,18 +50,18 @@ public class ContactService {
     // Update an existing contact
     public Contact updateContact(String id, Contact contactDetails) {
         return contactRepository.findById(id)
-            .map(contact -> {
-                contact.setFirstName(contactDetails.getFirstName());
-                contact.setLastName(contactDetails.getLastName());
-                contact.setEmail(contactDetails.getEmail());
-                contact.setDob(contactDetails.getDob());
-                contact.setPhone(contactDetails.getPhone());
-                contact.setAddress(contactDetails.getAddress());
-                contact.setBirthday(contactDetails.getBirthday());
-                contact.setProfilePictureUrl(contactDetails.getProfilePictureUrl());
-                return contactRepository.save(contact);
-            })
-            .orElseThrow(() -> new RuntimeException("Contact not found with id: " + id));
+                .map(contact -> {
+                    contact.setFirstName(contactDetails.getFirstName());
+                    contact.setLastName(contactDetails.getLastName());
+                    contact.setEmail(contactDetails.getEmail());
+                    contact.setDob(contactDetails.getDob());
+                    contact.setPhone(contactDetails.getPhone());
+                    contact.setAddress(contactDetails.getAddress());
+                    contact.setBirthday(contactDetails.getBirthday());
+                    contact.setProfilePictureUrl(contactDetails.getProfilePictureUrl());
+                    return contactRepository.save(contact);
+                })
+                .orElseThrow(() -> new RuntimeException("Contact not found with id: " + id));
     }
 
     // Delete a contact by ID
@@ -69,7 +73,7 @@ public class ContactService {
         }
     }
 
-    // Export contacts to CSV
+    // Export contacts to CSV format
     public void exportContactsToCSV(HttpServletResponse response) throws IOException {
         List<Contact> contacts = contactRepository.findAll();
         response.setContentType("text/csv");
@@ -79,19 +83,18 @@ public class ContactService {
         writer.println("ID,First Name,Last Name,Email,Date of Birth,Phone,Address,Birthday,Profile Picture URL");
 
         for (Contact contact : contacts) {
-            writer.printf("%s,%s,%s,%s,%s,%s,%s,%s,%s%n",
-                contact.getId(),
-                contact.getFirstName(),
-                contact.getLastName(),
-                contact.getEmail(),
-                contact.getDob(),
-                contact.getPhone(),
-                contact.getAddress(),
-                contact.getBirthday(),
-                contact.getProfilePictureUrl());
+            writer.printf("\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"%n",
+                    contact.getId(),
+                    contact.getFirstName(),
+                    contact.getLastName(),
+                    contact.getEmail(),
+                    contact.getDob(),
+                    contact.getPhone(),
+                    contact.getAddress(),
+                    contact.getBirthday(),
+                    contact.getProfilePictureUrl());
         }
         writer.flush();
-        writer.close();
     }
 
     // Import contacts from a list
@@ -99,6 +102,7 @@ public class ContactService {
         contactRepository.saveAll(contacts);
     }
 }
+
 
 
 

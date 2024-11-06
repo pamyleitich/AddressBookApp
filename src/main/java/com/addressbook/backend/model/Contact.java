@@ -24,9 +24,8 @@ public class Contact {
     @Email(message = "Please provide a valid email address")
     private String email;
 
-    private LocalDate birthday; // LocalDate for date manipulation
-
-    private String dob; // Date of Birth as a String, if needed in another format
+    // Using LocalDate for standardized date handling
+    private LocalDate birthday;
 
     @Pattern(regexp = "\\d{10}", message = "Phone number must be 10 digits")
     private String phone;
@@ -36,95 +35,48 @@ public class Contact {
 
     private String profilePictureUrl;
 
-    // Constructors
+    // Default constructor
     public Contact() {}
 
-    public Contact(String id, String firstName, String lastName, String email, LocalDate birthday, String dob, String phone, String address, String profilePictureUrl) {
+    // Parameterized constructor
+    public Contact(String id, String firstName, String lastName, String email, LocalDate birthday, 
+                   String phone, String address, String profilePictureUrl) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.birthday = birthday;
-        this.dob = dob;
         this.phone = phone;
         this.address = address;
         this.profilePictureUrl = profilePictureUrl;
     }
 
     // Getters and Setters
-    public String getId() {
-        return id;
-    }
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+    public String getFirstName() { return firstName; }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
 
-    public String getFirstName() {
-        return firstName;
-    }
+    public String getLastName() { return lastName; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 
-    public String getLastName() {
-        return lastName;
-    }
+    public LocalDate getBirthday() { return birthday; }
+    public void setBirthday(LocalDate birthday) { this.birthday = birthday; }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+    public String getPhone() { return phone; }
+    public void setPhone(String phone) { this.phone = phone; }
 
-    public String getEmail() {
-        return email;
-    }
+    public String getAddress() { return address; }
+    public void setAddress(String address) { this.address = address; }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public String getProfilePictureUrl() { return profilePictureUrl; }
+    public void setProfilePictureUrl(String profilePictureUrl) { this.profilePictureUrl = profilePictureUrl; }
 
-    public LocalDate getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(LocalDate birthday) {
-        this.birthday = birthday;
-    }
-
-    public String getDob() {
-        return dob;
-    }
-
-    public void setDob(String dob) {
-        this.dob = dob;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getProfilePictureUrl() {
-        return profilePictureUrl;
-    }
-
-    public void setProfilePictureUrl(String profilePictureUrl) {
-        this.profilePictureUrl = profilePictureUrl;
-    }
-
-    // Override toString for better debugging output
+    // Override toString for better logging and debugging
     @Override
     public String toString() {
         return "Contact{" +
@@ -133,14 +85,13 @@ public class Contact {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", birthday=" + birthday +
-                ", dob='" + dob + '\'' +
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
                 ", profilePictureUrl='" + profilePictureUrl + '\'' +
                 '}';
     }
 
-    // Override equals and hashCode for correct behavior in collections
+    // Override equals and hashCode based on 'id' for collection behavior
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -154,6 +105,7 @@ public class Contact {
         return Objects.hash(id);
     }
 }
+
 
 
 

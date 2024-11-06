@@ -4,19 +4,22 @@ import com.addressbook.backend.model.Contact;
 import com.addressbook.backend.service.ContactService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/contacts")
+@Validated
 public class ContactController {
 
     private final ContactService contactService;
 
-    // Constructor-based dependency injection
     public ContactController(ContactService contactService) {
         this.contactService = contactService;
     }
@@ -41,14 +44,14 @@ public class ContactController {
 
     // Add a new contact
     @PostMapping
-    public ResponseEntity<Contact> addContact(@RequestBody Contact contact) {
+    public ResponseEntity<Contact> addContact(@Valid @RequestBody Contact contact) {
         Contact newContact = contactService.addContact(contact);
         return new ResponseEntity<>(newContact, HttpStatus.CREATED);
     }
 
     // Update an existing contact
     @PutMapping("/{id}")
-    public ResponseEntity<Contact> updateContact(@PathVariable String id, @RequestBody Contact contactDetails) {
+    public ResponseEntity<Contact> updateContact(@PathVariable String id, @Valid @RequestBody Contact contactDetails) {
         try {
             Contact updatedContact = contactService.updateContact(id, contactDetails);
             return new ResponseEntity<>(updatedContact, HttpStatus.OK);
@@ -71,16 +74,23 @@ public class ContactController {
     // Export contacts to CSV
     @GetMapping("/export")
     public void exportContactsToCSV(HttpServletResponse response) throws IOException {
+        response.setContentType("text/csv");
+        response.setHeader("Content-Disposition", "attachment; filename=\"contacts.csv\"");
         contactService.exportContactsToCSV(response);
     }
 
-    // Import contacts from a list
+    // Import contacts from a CSV file
     @PostMapping("/import")
-    public ResponseEntity<HttpStatus> importContacts(@RequestBody List<Contact> contacts) {
-        contactService.importContacts(contacts);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<HttpStatus> importContacts(@RequestParam("file") MultipartFile file) {
+        try {
+            contactService.importContacts(file);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (IOException e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
+
 
 
 

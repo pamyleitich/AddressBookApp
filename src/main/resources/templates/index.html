@@ -14,7 +14,7 @@
         <!-- Header Section -->
         <header class="header">
             <h1>Address Book Application</h1>
-            <button id="toggleDarkMode" class="dark-mode-btn">🌙 Dark Mode</button>
+            <button id="toggleDarkMode" class="dark-mode-btn" aria-label="Toggle Dark Mode">🌙 Dark Mode</button>
         </header>
 
         <!-- Intro Section -->
@@ -26,14 +26,27 @@
         <!-- Control Panel Section -->
         <div class="control-panel">
             <form id="filterForm" class="filter-form">
-                <input type="text" id="searchInput" class="input-field" placeholder="Search by name">
-                <select id="sortBy" class="dropdown">
+                <input type="text" id="searchInput" class="input-field" placeholder="Search by name" aria-label="Search Contacts">
+                <select id="sortBy" class="dropdown" aria-label="Sort Contacts">
                     <option value="firstName">First Name</option>
                     <option value="lastName">Last Name</option>
-                    <option value="dob">Date of Birth</option>
+                    <option value="birthday">Date of Birth</option>
                 </select>
                 <button type="button" class="btn-primary" onclick="loadContacts()">Search & Sort</button>
             </form>
+        </div>
+
+        <!-- File Upload/Download Section -->
+        <div class="file-section">
+            <h2>File Upload & Download</h2>
+            <div>
+                <input type="file" id="fileInput" aria-label="Upload Contact File">
+                <button onclick="uploadFile()" class="btn-primary">Upload</button>
+            </div>
+            <div>
+                <input type="text" id="downloadFileName" class="input-field" placeholder="Enter file name to download" aria-label="Download File">
+                <button onclick="downloadFile()" class="btn-primary">Download</button>
+            </div>
         </div>
 
         <!-- Contact Form Section -->
@@ -140,7 +153,7 @@
                             <td>${contact.firstName}</td>
                             <td>${contact.lastName}</td>
                             <td>${contact.email}</td>
-                            <td>${contact.dob}</td>
+                            <td>${contact.birthday}</td>
                             <td>${contact.phone}</td>
                             <td>
                                 <button class="action-btn edit-btn" onclick="editContact('${contact.id}')">✏️</button>
@@ -171,7 +184,7 @@
                     document.getElementById('firstName').value = contact.firstName;
                     document.getElementById('lastName').value = contact.lastName;
                     document.getElementById('email').value = contact.email;
-                    document.getElementById('dob').value = contact.dob;
+                    document.getElementById('dob').value = contact.birthday;
                     document.getElementById('phone').value = contact.phone;
                     document.getElementById('formTitle').innerText = 'Edit Contact';
                     document.getElementById('submitBtn').innerText = 'Update Contact';
@@ -203,10 +216,59 @@
 
         // Initial load
         window.onload = loadContacts;
+        
+        // File upload function
+        function uploadFile() {
+            const formData = new FormData();
+            const fileInput = document.getElementById('fileInput');
+            
+            if (fileInput.files.length > 0) {
+                formData.append('file', fileInput.files[0]);
+                fetch('/api/files/upload', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.text())
+                .then(message => alert(message))
+                .catch(error => console.error('Error:', error));
+            } else {
+                alert("Please select a file to upload.");
+            }
+        }
+
+        // File download function
+        function downloadFile() {
+            const fileName = document.getElementById('downloadFileName').value;
+            if (fileName) {
+                fetch(`/api/files/download/${fileName}`)
+                    .then(response => {
+                        if (response.ok) {
+                            return response.blob();
+                        } else {
+                            throw new Error("File not found.");
+                        }
+                    })
+                    .then(blob => {
+                        const url = window.URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = fileName;
+                        document.body.appendChild(a);
+                        a.click();
+                        a.remove();
+                    })
+                    .catch(error => alert(error));
+            } else {
+                alert("Please enter the filename to download.");
+            }
+        }
     </script>
 </body>
 
 </html>
+
+
+
 
 
 

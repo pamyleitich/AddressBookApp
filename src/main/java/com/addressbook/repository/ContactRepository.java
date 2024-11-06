@@ -13,13 +13,13 @@ public interface ContactRepository extends MongoRepository<Contact, String> {
     
     // Custom query methods
     List<Contact> findByFirstName(String firstName);
-
     List<Contact> findByEmail(String email);
 
-    // Search by partial match for first name or last name
-    List<Contact> findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(String firstName, String lastName);
+    // Search by partial match for first name or last name, with pagination and sorting
+    Page<Contact> findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(String firstName, String lastName, Pageable pageable);
 
     // Paging and sorting support for large lists of contacts
     Page<Contact> findAll(Pageable pageable);
 }
+
 
