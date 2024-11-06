@@ -55,10 +55,9 @@ public class ContactService {
                     contact.setFirstName(contactDetails.getFirstName());
                     contact.setLastName(contactDetails.getLastName());
                     contact.setEmail(contactDetails.getEmail());
-                    contact.setDob(contactDetails.getDob());  // Assuming dob is a String, update if necessary
+                    contact.setBirthday(contactDetails.getBirthday()); // Changed from dob
                     contact.setPhone(contactDetails.getPhone());
                     contact.setAddress(contactDetails.getAddress());
-                    contact.setBirthday(contactDetails.getBirthday());
                     contact.setProfilePictureUrl(contactDetails.getProfilePictureUrl());
                     return contactRepository.save(contact);
                 })
@@ -81,18 +80,17 @@ public class ContactService {
         response.setHeader("Content-Disposition", "attachment; filename=\"contacts.csv\"");
 
         PrintWriter writer = response.getWriter();
-        writer.println("ID,First Name,Last Name,Email,Date of Birth,Phone,Address,Birthday,Profile Picture URL");
+        writer.println("ID,First Name,Last Name,Email,Birthday,Phone,Address,Profile Picture URL");
 
         for (Contact contact : contacts) {
-            writer.printf("\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"%n",
+            writer.printf("\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"%n",
                     contact.getId(),
                     contact.getFirstName(),
                     contact.getLastName(),
                     contact.getEmail(),
-                    contact.getDob(),  // Access dob directly if it’s a String
+                    contact.getBirthday(), // Use getBirthday() for LocalDate
                     contact.getPhone(),
                     contact.getAddress(),
-                    contact.getBirthday(),
                     contact.getProfilePictureUrl());
         }
         writer.flush();
@@ -103,6 +101,7 @@ public class ContactService {
         contactRepository.saveAll(contacts);
     }
 }
+
 
 
 
