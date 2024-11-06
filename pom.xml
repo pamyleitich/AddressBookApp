@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://www.apache.org/maven/v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.addressbook</groupId>
@@ -12,39 +12,40 @@
         <java.version>17</java.version>
         <spring-boot.version>2.7.15</spring-boot.version>
         <springfox-swagger.version>3.0.0</springfox-swagger.version>
+        <jackson.version>2.13.3</jackson.version> <!-- Upgrade to latest -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
-        <!-- Spring Boot Starter Web for building web applications -->
+        <!-- Spring Boot Starter Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
 
-        <!-- MongoDB Spring Boot Starter for database interaction -->
+        <!-- MongoDB Spring Boot Starter -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
 
-        <!-- Spring Boot Actuator for application monitoring and health checks -->
+        <!-- Spring Boot Actuator for Monitoring and Health Checks -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
 
-        <!-- Thymeleaf for rendering HTML templates -->
+        <!-- Thymeleaf for HTML Templates -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
 
-        <!-- Hibernate Validator for Bean Validation API support -->
+        <!-- Hibernate Validator for Bean Validation -->
         <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
@@ -58,7 +59,7 @@
             <version>2.0.1.Final</version>
         </dependency>
 
-        <!-- DevTools for live reload during development -->
+        <!-- DevTools for Development -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -67,7 +68,7 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- Spring Boot Starter Test for testing dependencies -->
+        <!-- Spring Boot Starter Test for Testing -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -75,35 +76,42 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Swagger for API documentation -->
+        <!-- Swagger for API Documentation -->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-boot-starter</artifactId>
             <version>${springfox-swagger.version}</version>
         </dependency>
 
-        <!-- Apache Commons IO for handling file uploads and downloads (optional) -->
+        <!-- Swagger UI for API documentation (Optional) -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${springfox-swagger.version}</version>
+        </dependency>
+
+        <!-- Apache Commons IO (for handling file uploads/downloads) -->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.11.0</version>
         </dependency>
 
-        <!-- Apache Commons Lang for additional utilities (optional) -->
+        <!-- Apache Commons Lang -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.12.0</version>
         </dependency>
 
-        <!-- Jackson for JSON processing (optional, used in Swagger and REST) -->
+        <!-- Jackson for JSON Processing -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.13.1</version>
+            <version>${jackson.version}</version>
         </dependency>
 
-        <!-- JavaX Servlet API for servlet handling -->
+        <!-- JavaX Servlet API (Required for Servlet handling) -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -114,7 +122,7 @@
 
     <build>
         <plugins>
-            <!-- Compiler Plugin to set the Java version -->
+            <!-- Compiler Plugin for Java Version -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -125,7 +133,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Spring Boot Maven Plugin for packaging as a WAR -->
+            <!-- Spring Boot Maven Plugin for WAR Packaging -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -141,6 +149,7 @@
         </plugins>
     </build>
 </project>
+
 
 
 
