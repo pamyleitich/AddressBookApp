@@ -30,7 +30,7 @@ public class AddressBookApplication extends SpringBootServletInitializer {
 
     // CORS Configuration Bean
     @Bean
-    public WebMvcConfigurer corsConfigurer() {
+    public WebMvcConfigurer customCorsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
