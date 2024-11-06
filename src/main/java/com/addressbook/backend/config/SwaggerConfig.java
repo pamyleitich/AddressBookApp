@@ -1,5 +1,3 @@
-package com.addressbook.backend.config;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.PathSelectors;
@@ -16,8 +14,10 @@ public class SwaggerConfig {
     public Docket apiDocket() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.addressbook.backend.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.addressbook.backend"))  // Set base package correctly
                 .paths(PathSelectors.any())
-                .build();
+                .build()
+                .groupName("addressbook"); // Set unique group name to avoid conflicts
     }
 }
+
