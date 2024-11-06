@@ -29,7 +29,8 @@ public class HomeController {
         List<Contact> contacts;
 
         if (search != null && !search.isEmpty()) {
-            contacts = contactService.searchContacts(search);
+            // Pass all required parameters to searchContacts
+            contacts = contactService.searchContacts(search, page, size);
         } else {
             contacts = contactService.getContactsSortedAndPaginated(sortBy, page, size);
         }
@@ -42,6 +43,7 @@ public class HomeController {
         return "index";  // Ensure this matches index.html under /templates
     }
 }
+
 
 
 
