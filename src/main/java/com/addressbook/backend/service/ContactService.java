@@ -8,10 +8,15 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -55,7 +60,7 @@ public class ContactService {
                     contact.setFirstName(contactDetails.getFirstName());
                     contact.setLastName(contactDetails.getLastName());
                     contact.setEmail(contactDetails.getEmail());
-                    contact.setBirthday(contactDetails.getBirthday()); // Changed from dob
+                    contact.setBirthday(contactDetails.getBirthday());
                     contact.setPhone(contactDetails.getPhone());
                     contact.setAddress(contactDetails.getAddress());
                     contact.setProfilePictureUrl(contactDetails.getProfilePictureUrl());
@@ -88,7 +93,7 @@ public class ContactService {
                     contact.getFirstName(),
                     contact.getLastName(),
                     contact.getEmail(),
-                    contact.getBirthday(), // Use getBirthday() for LocalDate
+                    contact.getBirthday(),
                     contact.getPhone(),
                     contact.getAddress(),
                     contact.getProfilePictureUrl());
@@ -96,11 +101,31 @@ public class ContactService {
         writer.flush();
     }
 
-    // Import contacts from a list
-    public void importContacts(List<Contact> contacts) {
+    // Import contacts from a CSV file
+    public void importContacts(MultipartFile file) throws IOException {
+        List<Contact> contacts = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
+            String line;
+            reader.readLine(); // Skip header line
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(",");
+                if (data.length >= 7) { // Ensure minimum columns are present
+                    Contact contact = new Contact();
+                    contact.setFirstName(data[0]);
+                    contact.setLastName(data[1]);
+                    contact.setEmail(data[2]);
+                    contact.setBirthday(LocalDate.parse(data[3])); // Adjust if date format differs
+                    contact.setPhone(data[4]);
+                    contact.setAddress(data[5]);
+                    contact.setProfilePictureUrl(data[6]);
+                    contacts.add(contact);
+                }
+            }
+        }
         contactRepository.saveAll(contacts);
     }
 }
+
 
 
 
