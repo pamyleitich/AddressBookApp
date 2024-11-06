@@ -28,6 +28,11 @@ public class ContactService {
         return contactRepository.findAll(PageRequest.of(page, size, Sort.by(sortBy))).getContent();
     }
 
+    // Search contacts by name (case-insensitive partial match)
+    public List<Contact> searchContacts(String query) {
+        return contactRepository.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(query, query);
+    }
+
     // Fetch a contact by ID
     public Optional<Contact> getContactById(String id) {
         return contactRepository.findById(id);
@@ -94,5 +99,6 @@ public class ContactService {
         contactRepository.saveAll(contacts);
     }
 }
+
 
 

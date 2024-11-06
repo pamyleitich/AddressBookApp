@@ -24,25 +24,28 @@ public class Contact {
     @Email(message = "Please provide a valid email address")
     private String email;
 
-    private LocalDate birthday; // Represented as LocalDate for easier date manipulation
+    private LocalDate birthday; // LocalDate for date manipulation
+
+    private String dob; // Date of Birth as a String, if needed in another format
 
     @Pattern(regexp = "\\d{10}", message = "Phone number must be 10 digits")
-    private String phone; // Phone Number
+    private String phone;
 
     @Size(max = 255, message = "Address should not exceed 255 characters")
-    private String address; // Physical Address
+    private String address;
 
-    private String profilePictureUrl; // URL for a profile picture
+    private String profilePictureUrl;
 
     // Constructors
     public Contact() {}
 
-    public Contact(String id, String firstName, String lastName, String email, LocalDate birthday, String phone, String address, String profilePictureUrl) {
+    public Contact(String id, String firstName, String lastName, String email, LocalDate birthday, String dob, String phone, String address, String profilePictureUrl) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.birthday = birthday;
+        this.dob = dob;
         this.phone = phone;
         this.address = address;
         this.profilePictureUrl = profilePictureUrl;
@@ -89,6 +92,14 @@ public class Contact {
         this.birthday = birthday;
     }
 
+    public String getDob() {
+        return dob;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
     public String getPhone() {
         return phone;
     }
@@ -122,6 +133,7 @@ public class Contact {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", birthday=" + birthday +
+                ", dob='" + dob + '\'' +
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
                 ", profilePictureUrl='" + profilePictureUrl + '\'' +
@@ -142,8 +154,6 @@ public class Contact {
         return Objects.hash(id);
     }
 }
-
-
 
 
 
