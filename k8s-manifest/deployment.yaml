@@ -19,21 +19,26 @@ spec:
         image: 999568710647.dkr.ecr.us-west-2.amazonaws.com/addressbook-app:1.4.0
         ports:
         - containerPort: 8080
+
         readinessProbe:
           httpGet:
             path: /actuator/health
             port: 8080
-          initialDelaySeconds: 20 # Increased to ensure the app is ready
-          periodSeconds: 10 # Probing every 10 seconds
-          failureThreshold: 3 # Fail after 3 consecutive failures
+          initialDelaySeconds: 30 # Increased to allow for application startup time
+          periodSeconds: 10 # Check every 10 seconds
+          timeoutSeconds: 5 # Allows up to 5 seconds for a response
+          failureThreshold: 3 # Mark as failed after 3 consecutive failures
           successThreshold: 1 # Mark as ready after 1 successful check
+
         livenessProbe:
           httpGet:
             path: /actuator/health
             port: 8080
-          initialDelaySeconds: 60 # Delayed to give the app enough time to start
-          periodSeconds: 30 # Probing every 30 seconds
+          initialDelaySeconds: 60 # Start checking after 60 seconds
+          periodSeconds: 30 # Check every 30 seconds
+          timeoutSeconds: 5 # Allows up to 5 seconds for a response
           failureThreshold: 5 # Restart after 5 consecutive failures
+
         resources:
           limits:
             memory: "512Mi"
