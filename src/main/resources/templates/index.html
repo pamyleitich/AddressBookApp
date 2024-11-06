@@ -7,94 +7,105 @@
     <title>Address Book</title>
     <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
     <div class="container">
-        <div class="intro-section">
+        <!-- Header Section with Logo and Dark Mode Toggle -->
+        <header class="header">
             <img src="/static/images/logo.png" alt="Address Book Logo" class="logo">
-            <h1>Welcome to the Address Book Application</h1>
-            <p>Easily store, manage, and retrieve contacts with details like name, email, phone, and birthday!</p>
-            <!-- Dark Mode Toggle -->
-            <button id="toggleDarkMode">Toggle Dark Mode</button>
-        </div>
+            <h1>Address Book</h1>
+            <button id="toggleDarkMode" class="dark-mode-btn"><i class="fas fa-moon"></i> Dark Mode</button>
+        </header>
 
-        <div class="content-section">
-            <!-- Search, Sort, and Pagination Controls -->
-            <div class="controls">
-                <form id="filterForm" class="filter-form">
-                    <input type="text" id="searchInput" placeholder="Search by name">
-                    <select id="sortBy">
-                        <option value="firstName">First Name</option>
-                        <option value="lastName">Last Name</option>
-                        <option value="dob">Date of Birth</option>
-                    </select>
-                    <button type="button" onclick="loadContacts()">Search & Sort</button>
-                </form>
-            </div>
+        <!-- Introductory Section -->
+        <section class="intro-section">
+            <p class="description">Store, manage, and retrieve contacts with ease. Add details like name, email, phone, and birthday!</p>
+        </section>
 
-            <!-- Contact Form -->
-            <div class="contact-form">
-                <h2 id="formTitle">Add New Contact</h2>
-                <form id="contactForm">
-                    <input type="hidden" id="contactId">
-                    <label for="firstName">First Name:</label>
-                    <input type="text" id="firstName" required>
+        <!-- Control Panel for Search, Sort, and Filter -->
+        <section class="control-panel">
+            <form id="filterForm" class="filter-form">
+                <input type="text" id="searchInput" placeholder="Search by name" class="input-field">
+                <select id="sortBy" class="dropdown">
+                    <option value="firstName">First Name</option>
+                    <option value="lastName">Last Name</option>
+                    <option value="dob">Date of Birth</option>
+                </select>
+                <button type="button" onclick="loadContacts()" class="btn-primary"><i class="fas fa-search"></i> Search</button>
+            </form>
+        </section>
 
-                    <label for="lastName">Last Name:</label>
-                    <input type="text" id="lastName" required>
-
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" required>
-
-                    <label for="dob">Date of Birth:</label>
-                    <input type="text" id="dob" placeholder="MM/DD/YYYY" required>
-
-                    <label for="phone">Phone Number (10 digits):</label>
-                    <input type="tel" id="phone" pattern="\\d{10}" required>
-
-                    <button type="submit" id="submitBtn">Add Contact</button>
-                    <button type="button" id="cancelBtn" style="display:none;">Cancel</button>
-                </form>
-            </div>
-
-            <!-- Contact List with Pagination -->
-            <div class="contact-list">
-                <h2>Contact List</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Email</th>
-                            <th>DOB</th>
-                            <th>Phone</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="contactTable"></tbody>
-                </table>
-                <div class="pagination">
-                    <button onclick="prevPage()">Previous</button>
-                    <span id="pageInfo">Page 1</span>
-                    <button onclick="nextPage()">Next</button>
+        <!-- Contact Form Section -->
+        <section class="contact-form-section">
+            <h2 id="formTitle">Add New Contact</h2>
+            <form id="contactForm" class="contact-form">
+                <input type="hidden" id="contactId">
+                
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" required class="input-field">
+                
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" required class="input-field">
+                
+                <label for="email">Email</label>
+                <input type="email" id="email" required class="input-field">
+                
+                <label for="dob">Date of Birth</label>
+                <input type="text" id="dob" placeholder="MM/DD/YYYY" class="input-field">
+                
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" placeholder="10 digits" pattern="\\d{10}" required class="input-field">
+                
+                <div class="form-buttons">
+                    <button type="submit" id="submitBtn" class="btn-primary">Add Contact</button>
+                    <button type="button" id="cancelBtn" class="btn-secondary" style="display: none;">Cancel</button>
                 </div>
+            </form>
+        </section>
+
+        <!-- Contact List with Pagination -->
+        <section class="contact-list-section">
+            <h2>Contact List</h2>
+            <table class="contact-table">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>DOB</th>
+                        <th>Phone</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="contactTable"></tbody>
+            </table>
+            <div class="pagination">
+                <button onclick="prevPage()" class="pagination-btn"><i class="fas fa-chevron-left"></i> Previous</button>
+                <span id="pageInfo">Page 1</span>
+                <button onclick="nextPage()" class="pagination-btn">Next <i class="fas fa-chevron-right"></i></button>
             </div>
-        </div>
+        </section>
+
+        <!-- Footer Section -->
+        <footer class="footer">
+            <p>©2024 Address Book App, Inc. All rights reserved.</p>
+        </footer>
     </div>
 
-    <div class="footer">
-        ©2024 Address Book App, Inc. All rights reserved.
-    </div>
-
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
-        flatpickr("#dob", { dateFormat: "m/d/Y", altInput: true, altFormat: "m/d/Y" });
+        // Initialize date picker
+        flatpickr("#dob", { dateFormat: "m/d/Y" });
 
+        // State variables
         let isEditMode = false;
         let currentPage = 0;
         const pageSize = 10;
 
+        // Form submission for Add/Edit contact
         document.getElementById('contactForm').addEventListener('submit', function (e) {
             e.preventDefault();
             const contactId = document.getElementById('contactId').value;
@@ -117,6 +128,7 @@
             });
         });
 
+        // Load contacts with AJAX
         function loadContacts() {
             const searchQuery = document.getElementById('searchInput').value;
             const sortBy = document.getElementById('sortBy').value;
@@ -133,8 +145,8 @@
                             <td>${contact.dob}</td>
                             <td>${contact.phone}</td>
                             <td>
-                                <button onclick="editContact('${contact.id}')">Edit</button>
-                                <button onclick="deleteContact('${contact.id}')">Delete</button>
+                                <button onclick="editContact('${contact.id}')" class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                <button onclick="deleteContact('${contact.id}')" class="action-btn delete-btn"><i class="fas fa-trash-alt"></i></button>
                             </td>
                         </tr>`;
                         contactTable.insertAdjacentHTML('beforeend', row);
@@ -189,6 +201,7 @@
 </body>
 
 </html>
+
 
 
 

@@ -1,200 +1,53 @@
-/* General Page Styling */
-html,
-body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #fff;
-    color: #333;
-    box-sizing: border-box;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Container Styling */
-.container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    padding: 20px;
-}
-
-/* Intro Section */
-.intro-section {
-    text-align: center;
-    padding: 20px;
-}
-
-/* Logo Styling */
-.logo {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 20px;
-}
-
-/* Headers Styling */
-h1,
-h2 {
-    color: #6a0dad;
-}
-
-/* Paragraph Text */
-p {
-    color: #555;
-}
-
-/* Content Section */
-.content-section {
-    display: flex;
-    justify-content: space-around;
-    flex-grow: 1;
-    padding: 20px 0;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-/* Form and List Styling */
+/* Update the form alignment */
 .contact-form,
 .contact-list {
-    width: 100%;
-    max-width: 600px;
-    background-color: #f8f8ff;
-    padding: 20px;
-    border-radius: 8px;
-    border: 2px solid #6a0dad;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: calc(50% - 40px);
+    /* Make both form and list occupy half screen with padding */
+    min-width: 300px;
+    /* Set minimum width for smaller screens */
+    margin: 20px;
+    /* Add spacing */
 }
 
-.contact-form h2 {
-    background-color: #6a0dad;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-    border-radius: 4px;
-    margin-bottom: 20px;
-}
-
-/* Input and Button Styling */
+/* Improve the alignment of form inputs and buttons */
 input[type="text"],
 input[type="email"],
 input[type="tel"],
 input[type="date"],
-select,
+select {
+    margin-bottom: 10px;
+    /* Consistent spacing between fields */
+}
+
 button {
     width: 100%;
+    /* Full-width buttons for consistency */
     padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-    box-sizing: border-box;
-}
-
-input[type="submit"],
-button {
+    margin-top: 10px;
     background-color: #6a0dad;
-    color: #fff;
+    color: white;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: 0.3s;
 }
 
-input[type="submit"]:hover,
 button:hover {
     background-color: #5a0080;
 }
 
-/* Pagination Controls */
-.pagination {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
-}
+/* Ensure responsive alignment on smaller screens */
+@media (max-width: 768px) {
 
-.pagination a,
-.pagination span {
-    padding: 8px 12px;
-    text-decoration: none;
-    color: #6a0dad;
-    border: 1px solid #6a0dad;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+    .contact-form,
+    .contact-list {
+        width: 100%;
+        /* Full-width on smaller screens */
+        margin: 10px 0;
+    }
 
-.pagination a:hover {
-    background-color: #6a0dad;
-    color: #fff;
-}
-
-/* Table Styling */
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-table,
-th,
-td {
-    border: 1px solid #6a0dad;
-}
-
-th,
-td {
-    padding: 10px;
-    text-align: left;
-}
-
-th {
-    background-color: #f2f2f2;
-}
-
-/* Footer Styling */
-.footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #6a0dad;
-    color: #fff;
-    font-size: 14px;
-    margin-top: auto;
-}
-
-/* Dark Mode Styling */
-body.dark-mode {
-    background-color: #333;
-    color: #f8f8ff;
-}
-
-body.dark-mode .contact-form,
-body.dark-mode .contact-list {
-    background-color: #444;
-    border: 2px solid #888;
-}
-
-body.dark-mode h1,
-body.dark-mode h2 {
-    color: #f8f8ff;
-}
-
-body.dark-mode input[type="submit"],
-body.dark-mode button {
-    background-color: #888;
-    color: #fff;
-}
-
-body.dark-mode input[type="submit"]:hover,
-body.dark-mode button:hover {
-    background-color: #aaa;
-}
-
-body.dark-mode .pagination a,
-body.dark-mode .pagination span {
-    color: #f8f8ff;
-    border: 1px solid #888;
-}
-
-body.dark-mode .pagination a:hover {
-    background-color: #888;
+    .controls {
+        text-align: center;
+        margin-bottom: 20px;
+    }
 }
