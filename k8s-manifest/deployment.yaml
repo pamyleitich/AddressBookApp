@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: addressbook-app-container
-        image: 999568710647.dkr.ecr.us-west-2.amazonaws.com/addressbook-app:1.9.0
+        image: 999568710647.dkr.ecr.us-west-2.amazonaws.com/addressbook-app:1.10.0
         ports:
         - containerPort: 8080
 
