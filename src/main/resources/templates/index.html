@@ -5,67 +5,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Address Book</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
     <div class="container">
-        <!-- Header Section with Logo and Dark Mode Toggle -->
+        <!-- Header Section -->
         <header class="header">
-            <img src="/static/images/logo.png" alt="Address Book Logo" class="logo">
-            <h1>Address Book</h1>
-            <button id="toggleDarkMode" class="dark-mode-btn"><i class="fas fa-moon"></i> Dark Mode</button>
+            <h1>Address Book Application</h1>
+            <button id="toggleDarkMode" class="dark-mode-btn">🌙 Dark Mode</button>
         </header>
 
-        <!-- Introductory Section -->
-        <section class="intro-section">
-            <p class="description">Store, manage, and retrieve contacts with ease. Add details like name, email, phone, and birthday!</p>
-        </section>
+        <!-- Intro Section -->
+        <div class="intro-section">
+            <img src="/static/images/logo.png" alt="Address Book Logo" class="logo">
+            <p class="description">Effortlessly manage contacts with details such as name, email, phone, and more!</p>
+        </div>
 
-        <!-- Control Panel for Search, Sort, and Filter -->
-        <section class="control-panel">
+        <!-- Control Panel Section -->
+        <div class="control-panel">
             <form id="filterForm" class="filter-form">
-                <input type="text" id="searchInput" placeholder="Search by name" class="input-field">
+                <input type="text" id="searchInput" class="input-field" placeholder="Search by name">
                 <select id="sortBy" class="dropdown">
                     <option value="firstName">First Name</option>
                     <option value="lastName">Last Name</option>
                     <option value="dob">Date of Birth</option>
                 </select>
-                <button type="button" onclick="loadContacts()" class="btn-primary"><i class="fas fa-search"></i> Search</button>
+                <button type="button" class="btn-primary" onclick="loadContacts()">Search & Sort</button>
             </form>
-        </section>
+        </div>
 
         <!-- Contact Form Section -->
         <section class="contact-form-section">
             <h2 id="formTitle">Add New Contact</h2>
-            <form id="contactForm" class="contact-form">
+            <form id="contactForm">
                 <input type="hidden" id="contactId">
                 
-                <label for="firstName">First Name</label>
-                <input type="text" id="firstName" required class="input-field">
-                
-                <label for="lastName">Last Name</label>
-                <input type="text" id="lastName" required class="input-field">
-                
-                <label for="email">Email</label>
-                <input type="email" id="email" required class="input-field">
-                
-                <label for="dob">Date of Birth</label>
-                <input type="text" id="dob" placeholder="MM/DD/YYYY" class="input-field">
-                
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" placeholder="10 digits" pattern="\\d{10}" required class="input-field">
-                
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" class="input-field" required>
+
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" class="input-field" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" class="input-field" required>
+
+                <label for="dob">Date of Birth:</label>
+                <input type="text" id="dob" class="input-field" placeholder="MM/DD/YYYY" required>
+
+                <label for="phone">Phone Number (10 digits):</label>
+                <input type="tel" id="phone" class="input-field" pattern="\\d{10}" placeholder="e.g., 1234567890" required>
+
                 <div class="form-buttons">
                     <button type="submit" id="submitBtn" class="btn-primary">Add Contact</button>
-                    <button type="button" id="cancelBtn" class="btn-secondary" style="display: none;">Cancel</button>
+                    <button type="button" id="cancelBtn" class="btn-secondary" style="display:none;">Cancel</button>
                 </div>
             </form>
         </section>
 
-        <!-- Contact List with Pagination -->
+        <!-- Contact List Section -->
         <section class="contact-list-section">
             <h2>Contact List</h2>
             <table class="contact-table">
@@ -82,30 +81,29 @@
                 <tbody id="contactTable"></tbody>
             </table>
             <div class="pagination">
-                <button onclick="prevPage()" class="pagination-btn"><i class="fas fa-chevron-left"></i> Previous</button>
+                <button onclick="prevPage()" class="pagination-btn">Previous</button>
                 <span id="pageInfo">Page 1</span>
-                <button onclick="nextPage()" class="pagination-btn">Next <i class="fas fa-chevron-right"></i></button>
+                <button onclick="nextPage()" class="pagination-btn">Next</button>
             </div>
         </section>
-
-        <!-- Footer Section -->
-        <footer class="footer">
-            <p>©2024 Address Book App, Inc. All rights reserved.</p>
-        </footer>
     </div>
 
-    <!-- Scripts -->
+    <!-- Footer Section -->
+    <footer class="footer">
+        &copy; 2024 Address Book App, Inc. All rights reserved.
+    </footer>
+
+    <!-- JavaScript & Plugins -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
-        // Initialize date picker
-        flatpickr("#dob", { dateFormat: "m/d/Y" });
+        // Initialize date picker for date of birth field
+        flatpickr("#dob", { dateFormat: "m/d/Y", altInput: true, altFormat: "m/d/Y" });
 
-        // State variables
         let isEditMode = false;
         let currentPage = 0;
         const pageSize = 10;
 
-        // Form submission for Add/Edit contact
+        // Handle form submission
         document.getElementById('contactForm').addEventListener('submit', function (e) {
             e.preventDefault();
             const contactId = document.getElementById('contactId').value;
@@ -128,7 +126,7 @@
             });
         });
 
-        // Load contacts with AJAX
+        // Fetch and display contacts
         function loadContacts() {
             const searchQuery = document.getElementById('searchInput').value;
             const sortBy = document.getElementById('sortBy').value;
@@ -145,8 +143,8 @@
                             <td>${contact.dob}</td>
                             <td>${contact.phone}</td>
                             <td>
-                                <button onclick="editContact('${contact.id}')" class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                                <button onclick="deleteContact('${contact.id}')" class="action-btn delete-btn"><i class="fas fa-trash-alt"></i></button>
+                                <button class="action-btn edit-btn" onclick="editContact('${contact.id}')">✏️</button>
+                                <button class="action-btn delete-btn" onclick="deleteContact('${contact.id}')">🗑️</button>
                             </td>
                         </tr>`;
                         contactTable.insertAdjacentHTML('beforeend', row);
@@ -155,6 +153,7 @@
                 });
         }
 
+        // Delete contact
         function deleteContact(id) {
             fetch(`/api/contacts/${id}`, { method: 'DELETE' })
                 .then(() => {
@@ -163,6 +162,7 @@
                 });
         }
 
+        // Edit contact
         function editContact(id) {
             fetch(`/api/contacts/${id}`)
                 .then(response => response.json())
@@ -180,6 +180,7 @@
                 });
         }
 
+        // Reset form after submission
         function resetForm() {
             document.getElementById('contactForm').reset();
             document.getElementById('formTitle').innerText = 'Add New Contact';
@@ -188,19 +189,25 @@
             isEditMode = false;
         }
 
+        // Pagination functions
         function nextPage() { currentPage++; loadContacts(); }
         function prevPage() { if (currentPage > 0) currentPage--; loadContacts(); }
 
+        // Dark mode toggle
         document.getElementById('toggleDarkMode').addEventListener('click', function () {
             document.body.classList.toggle('dark-mode');
         });
 
+        // Cancel button to reset form
         document.getElementById('cancelBtn').addEventListener('click', resetForm);
+
+        // Initial load
         window.onload = loadContacts;
     </script>
 </body>
 
 </html>
+
 
 
 
