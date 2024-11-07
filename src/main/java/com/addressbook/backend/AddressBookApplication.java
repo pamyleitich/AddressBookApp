@@ -1,5 +1,7 @@
 package com.addressbook.backend;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -11,6 +13,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 @EnableMongoRepositories(basePackages = "com.addressbook.backend.repository")
+@OpenAPIDefinition(
+    info = @Info(
+        title = "Address Book API",
+        version = "1.0",
+        description = "API documentation for the Address Book application"
+    )
+)
 public class AddressBookApplication extends SpringBootServletInitializer {
 
     @Override
@@ -37,5 +46,3 @@ public class AddressBookApplication extends SpringBootServletInitializer {
         };
     }
 }
-
-
