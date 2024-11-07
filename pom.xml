@@ -11,7 +11,7 @@
     <properties>
         <java.version>17</java.version>
         <spring-boot.version>2.7.15</spring-boot.version>
-        <springdoc-openapi.version>1.6.14</springdoc-openapi.version> <!-- Known compatible version -->
+        <springdoc-openapi.version>1.6.14</springdoc-openapi.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -75,7 +75,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- SpringDoc OpenAPI for Swagger Documentation -->
+        <!-- SpringDoc OpenAPI for Swagger Documentation (Stable Version) -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
@@ -112,6 +112,7 @@
         </plugins>
     </build>
 </project>
+
 
 
 
