@@ -80,20 +80,6 @@
             </exclusions>
         </dependency>
 
-        <!-- JUnit Jupiter (JUnit 5) -->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.8.2</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.8.2</version>
-            <scope>test</scope>
-        </dependency>
-
         <!-- Spring REST Docs for API Documentation -->
         <dependency>
             <groupId>org.springframework.restdocs</groupId>
@@ -108,13 +94,6 @@
             <artifactId>spring-restdocs-asciidoctor</artifactId>
             <version>2.0.6.RELEASE</version>
             <scope>test</scope>
-        </dependency>
-
-        <!-- Swagger Annotations -->
-        <dependency>
-            <groupId>io.swagger.core.v3</groupId>
-            <artifactId>swagger-annotations</artifactId>
-            <version>2.1.10</version>
         </dependency>
 
         <!-- Jackson Dependencies -->
@@ -132,6 +111,13 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
             <version>2.13.5</version>
+        </dependency>
+
+        <!-- Swagger Annotations -->
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>2.1.10</version>
         </dependency>
     </dependencies>
 
@@ -187,6 +173,7 @@
         </plugins>
     </build>
 </project>
+
 
 
 
