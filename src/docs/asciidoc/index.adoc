@@ -1,0 +1,13 @@
+= AddressBook API Documentation
+
+== Contacts API
+
+=== Get Contact by ID
+
+include::{snippets}/get-contact/http-request.adoc[]
+include::{snippets}/get-contact/http-response.adoc[]
+
+=== Get All Contacts
+
+include::{snippets}/get-all-contacts/http-request.adoc[]
+include::{snippets}/get-all-contacts/http-response.adoc[]
