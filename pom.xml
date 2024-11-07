@@ -66,7 +66,7 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- Spring Boot Starter Test with JUnit 5 and MockMvc -->
+        <!-- Spring Boot Starter Test for JUnit 5 and MockMvc -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -85,6 +85,14 @@
             <groupId>org.springframework.restdocs</groupId>
             <artifactId>spring-restdocs-mockmvc</artifactId>
             <version>2.0.6.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Spring Web Test dependencies for MockMvc -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>5.3.27</version>
             <scope>test</scope>
         </dependency>
 
@@ -170,6 +178,7 @@
         </plugins>
     </build>
 </project>
+
 
 
 
