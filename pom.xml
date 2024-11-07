@@ -57,7 +57,7 @@
             <version>2.0.1.Final</version>
         </dependency>
 
-        <!-- Spring Boot DevTools -->
+        <!-- DevTools for Development -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -66,7 +66,7 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- Spring Boot Test Starter with Exclusions -->
+        <!-- Spring Boot Starter Test for JUnit 5 and MockMvc -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -80,29 +80,7 @@
             </exclusions>
         </dependency>
 
-        <!-- JUnit 5 API and Engine for Tests -->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.8.2</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.8.2</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- MockMvc for testing Spring MVC -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>5.3.29</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- Spring REST Docs for API Documentation with MockMvc Support -->
+        <!-- Spring REST Docs for API Documentation (MockMvc Support) -->
         <dependency>
             <groupId>org.springframework.restdocs</groupId>
             <artifactId>spring-restdocs-mockmvc</artifactId>
@@ -110,7 +88,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Jackson Dependencies for JSON Processing -->
+        <!-- Jackson Dependencies -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
@@ -177,6 +155,7 @@
         </plugins>
     </build>
 </project>
+
 
 
 
