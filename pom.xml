@@ -66,7 +66,7 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- Spring Boot Starter Test with JUnit 5, MockMvc, and AssertJ -->
+        <!-- Spring Boot Starter Test with JUnit 5 and MockMvc -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -80,7 +80,7 @@
             </exclusions>
         </dependency>
 
-        <!-- Spring REST Docs for API Documentation (MockMvc Support) -->
+        <!-- Spring REST Docs for API Documentation with MockMvc Support -->
         <dependency>
             <groupId>org.springframework.restdocs</groupId>
             <artifactId>spring-restdocs-mockmvc</artifactId>
@@ -88,7 +88,22 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Jackson Dependencies -->
+        <!-- JUnit 5 API for Tests -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.8.2</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.8.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Jackson Dependencies for JSON Processing -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
@@ -155,6 +170,7 @@
         </plugins>
     </build>
 </project>
+
 
 
 
