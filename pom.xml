@@ -135,11 +135,11 @@
                 </executions>
             </plugin>
 
-            <!-- Asciidoctor Plugin for Spring REST Docs -->
+            <!-- Asciidoctor Plugin for Spring REST Docs (Stable Version) -->
             <plugin>
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>
-                <version>2.4.0</version>
+                <version>1.5.8</version> <!-- Stable and widely available version -->
                 <executions>
                     <execution>
                         <id>generate-docs</id>
@@ -160,6 +160,7 @@
         </plugins>
     </build>
 </project>
+
 
 
 
