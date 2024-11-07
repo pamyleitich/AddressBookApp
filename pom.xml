@@ -66,7 +66,7 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- Spring Boot Starter Test for JUnit 5 and MockMvc -->
+        <!-- Spring Boot Starter Test with Exclusions -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -96,7 +96,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- JUnit 5 API for Tests -->
+        <!-- JUnit 5 API and Engine for Tests -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -178,6 +178,7 @@
         </plugins>
     </build>
 </project>
+
 
 
 
