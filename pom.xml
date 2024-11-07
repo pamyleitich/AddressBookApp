@@ -66,7 +66,7 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- Spring Boot Starter Test for JUnit 5 and MockMvc -->
+        <!-- Spring Boot Starter Test with JUnit 5, MockMvc, and AssertJ -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -155,6 +155,7 @@
         </plugins>
     </build>
 </project>
+
 
 
 
