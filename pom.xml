@@ -15,44 +15,49 @@
     </properties>
 
     <dependencies>
-        <!-- Core Spring Boot Dependencies -->
+        <!-- Spring Boot Starter Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
 
+        <!-- MongoDB Spring Boot Starter -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
 
+        <!-- Spring Boot Actuator for Monitoring -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
 
+        <!-- Thymeleaf for HTML templates -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
 
-        <!-- Validation Dependencies -->
+        <!-- Hibernate Validator for Bean Validation -->
         <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>6.2.3.Final</version>
         </dependency>
+
+        <!-- Bean Validation API -->
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
             <version>2.0.1.Final</version>
         </dependency>
 
-        <!-- Development and Testing Dependencies -->
+        <!-- DevTools for Development -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -60,6 +65,8 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
+
+        <!-- Spring Boot Starter Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -67,19 +74,23 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Spring REST Docs Dependencies -->
+        <!-- Spring REST Docs for API Documentation -->
         <dependency>
             <groupId>org.springframework.restdocs</groupId>
             <artifactId>spring-restdocs-mockmvc</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.restdocs</groupId>
-            <artifactId>spring-restdocs-asciidoctor</artifactId>
+            <version>2.0.6.RELEASE</version>
             <scope>test</scope>
         </dependency>
 
-        <!-- Jackson JSON Processing -->
+        <!-- Asciidoctor for generating HTML documentation -->
+        <dependency>
+            <groupId>org.springframework.restdocs</groupId>
+            <artifactId>spring-restdocs-asciidoctor</artifactId>
+            <version>2.0.6.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Jackson Dependencies -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
@@ -99,7 +110,7 @@
 
     <build>
         <plugins>
-            <!-- Compiler Plugin for Java Version Compatibility -->
+            <!-- Compiler Plugin to Set Java Version -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -138,11 +149,10 @@
                         </goals>
                         <configuration>
                             <backend>html</backend>
-                            <sourceDirectory>src/docs/asciidoc</sourceDirectory>
+                            <sources>
+                                <source>src/docs/asciidoc</source>
+                            </sources>
                             <outputDirectory>${project.build.directory}/docs</outputDirectory>
-                            <attributes>
-                                <snippets>${project.build.directory}/generated-snippets</snippets>
-                            </attributes>
                         </configuration>
                     </execution>
                 </executions>
@@ -150,6 +160,7 @@
         </plugins>
     </build>
 </project>
+
 
 
 
