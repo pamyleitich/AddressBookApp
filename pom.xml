@@ -103,11 +103,18 @@
             <version>5.8.2</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>5.8.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- MockMvc for testing Spring MVC -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>${spring-boot.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -178,6 +185,7 @@
         </plugins>
     </build>
 </project>
+
 
 
 
