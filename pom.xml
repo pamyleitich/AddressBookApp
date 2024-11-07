@@ -66,11 +66,31 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- Spring Boot Starter Test -->
+        <!-- Spring Boot Starter Test with JUnit 5 and MockMvc -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <version>${spring-boot.version}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- JUnit Jupiter API for Testing -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.8.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.8.2</version>
             <scope>test</scope>
         </dependency>
 
@@ -88,6 +108,13 @@
             <artifactId>spring-restdocs-asciidoctor</artifactId>
             <version>2.0.6.RELEASE</version>
             <scope>test</scope>
+        </dependency>
+
+        <!-- Swagger Annotations -->
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>2.1.10</version>
         </dependency>
 
         <!-- Jackson Dependencies -->
@@ -135,11 +162,11 @@
                 </executions>
             </plugin>
 
-            <!-- Asciidoctor Plugin for Spring REST Docs (Stable Version) -->
+            <!-- Asciidoctor Plugin for Spring REST Docs -->
             <plugin>
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>
-                <version>1.5.8</version> <!-- Stable and widely available version -->
+                <version>1.5.8</version>
                 <executions>
                     <execution>
                         <id>generate-docs</id>
@@ -160,6 +187,7 @@
         </plugins>
     </build>
 </project>
+
 
 
 
