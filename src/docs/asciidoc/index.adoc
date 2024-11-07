@@ -1,5 +1,42 @@
 = API Documentation
+:toc: left
+:toclevels: 2
 
-== Your Endpoint
+== Overview
+This documentation provides details on the REST API endpoints for the AddressBook application.
 
-include::{snippets}/your-endpoint/response-fields.adoc[]
+== Endpoints
+
+=== Contact Endpoint
+
+==== `GET /contacts`
+
+Retrieve a list of contacts.
+
+include::{snippets}/contacts/get/response-fields.adoc[]
+
+==== `GET /contacts/{id}`
+
+Retrieve details of a specific contact.
+
+include::{snippets}/contacts/get-by-id/response-fields.adoc[]
+
+==== `POST /contacts`
+
+Create a new contact.
+
+include::{snippets}/contacts/create/request-fields.adoc[]
+include::{snippets}/contacts/create/response-fields.adoc[]
+
+==== `PUT /contacts/{id}`
+
+Update an existing contact.
+
+include::{snippets}/contacts/update/request-fields.adoc[]
+include::{snippets}/contacts/update/response-fields.adoc[]
+
+==== `DELETE /contacts/{id}`
+
+Delete a contact.
+
+include::{snippets}/contacts/delete/response-fields.adoc[]
