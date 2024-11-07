@@ -92,7 +92,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
-            <version>5.3.27</version>
+            <version>5.3.29</version>
             <scope>test</scope>
         </dependency>
 
@@ -103,7 +103,7 @@
             <version>5.8.2</version>
             <scope>test</scope>
         </dependency>
-        
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
@@ -178,6 +178,7 @@
         </plugins>
     </build>
 </project>
+
 
 
 
