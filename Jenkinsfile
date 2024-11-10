@@ -31,7 +31,7 @@ pipeline {
                       ${scannerHome}/bin/sonar-scanner  \
                       -Dsonar.projectKey=addressbook_app \
                       -Dsonar.projectName='addressbook-app' \
-                      -Dsonar.host.url=https://sonarqube.dominionsystem.org \
+                      -Dsonar.host.url=http://35.93.2.37:9000 \
                       -Dsonar.token=${SONAR_TOKEN} \
                       -Dsonar.sources=src/main/java/ \
                       -Dsonar.java.binaries=target/classes \
@@ -69,7 +69,7 @@ pipeline {
     stage('7. Email Notification') {
       steps {
         mail bcc: 'pamyleitich@gmail.com', body: '''Build is Over. Check the application using the URL below:
-         https://address.dominionsystem.org
+     // https://address.dominionsystem.org
          Let me know if the changes look okay.
          Thanks,
          Dominion System Technologies,
