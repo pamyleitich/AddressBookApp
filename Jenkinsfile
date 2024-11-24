@@ -29,7 +29,7 @@ pipeline {
               withCredentials([string(credentialsId: 'sonarqube-token', variable: 'SONAR_TOKEN')]) {
                       sh """
                       ${scannerHome}/bin/sonar-scanner  \
-                      -Dsonar.projectKey=addressbook_app \
+                      -Dsonar.projectKey=addressbook-app \
                       -Dsonar.projectName='addressbook-app' \
                       -Dsonar.host.url=http://18.237.234.240:9000 \
                       -Dsonar.token=${SONAR_TOKEN} \
