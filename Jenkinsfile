@@ -13,7 +13,7 @@ pipeline {
     stages {
     stage('1. Git Checkout') {
       steps {
-        git branch: 'mongodb-integration', credentialsId: 'Github-pat', url: 'https://github.com/ndiforfusi/AddressBookApp.git'
+        git branch: 'main', credentialsId: 'Github-pat', url: 'https://github.com/pamyleitich/AddressBookApp.git'
       }
     }
     stage('2. Build with Maven') { 
